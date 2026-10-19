@@ -6,10 +6,6 @@ on:
     paths-ignore: [ '**.md' ]
   workflow_dispatch:
 
-concurrency:
-  group: build-apk-${{ github.ref }}
-  cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,18 +18,29 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      # Gradle keshi (keyingi buildlar ancha tez bo'ladi)
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.7'
-          cache-read-only: false
 
-      - name: Android SDK litsenziyalari
-        run: yes | "$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
-
-      - name: Inject Telegram token (from GitHub Secret)
+      - name: Inject Telegram token
         env:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
-        run: |
-          if [ -n "$TG_BOT_TOKEN" ]; then
-            sed -i "s|__TG_BOT_TOKEN__|${TG_BOT_TOKEN}|g" 
+        run: '[ -z "$TG_BOT_TOKEN" ] || sed -i "s|__TG_BOT_TOKEN__|${TG_BOT_TOKEN}|g" app/src/main/assets/index.html'
+
+      - name: Build debug APK
+        shell: bash
+        run: gradle assembleDebug --no-daemon --build-cache -x lint -x test 2>&1 | tee build.log
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: CppUz-Kamola-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+
+      - name: Upload build log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-log
+          path: build.log
