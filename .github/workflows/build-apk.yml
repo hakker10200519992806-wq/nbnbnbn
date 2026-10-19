@@ -27,9 +27,12 @@ jobs:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
         run: '[ -z "$TG_BOT_TOKEN" ] || sed -i "s|__TG_BOT_TOKEN__|${TG_BOT_TOKEN}|g" app/src/main/assets/index.html'
 
+      - name: Kotlin ziddiyatini tuzatish (init script)
+        run: "echo 'allprojects { configurations.configureEach { exclude group: \"org.jetbrains.kotlin\", module: \"kotlin-stdlib-jdk7\"; exclude group: \"org.jetbrains.kotlin\", module: \"kotlin-stdlib-jdk8\" } }' > fix.init.gradle"
+
       - name: Build debug APK
         shell: bash
-        run: gradle assembleDebug --no-daemon --build-cache -x lint -x test 2>&1 | tee build.log
+        run: gradle -I fix.init.gradle assembleDebug --no-daemon --build-cache -x lint -x test 2>&1 | tee build.log
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
