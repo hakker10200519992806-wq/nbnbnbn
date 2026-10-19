@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html lang="uz"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CppUz — Kamola uchun C++</title>
+<style>
+:root{--bg:#0a0e1a;--s:#111827;--s2:#1a2235;--s3:#1e2d45;--bd:#1e3a5f;--ac:#00e5a0;--ac2:#00b8ff;--rd:#ff6b6b;--yl:#ffd93d;--tx:#e2e8f0;--t2:#94a3b8;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{display:flex;align-items:center;gap:14px;padding:12px 18px;background:var(--s);border-bottom:1px solid var(--bd);flex-wrap:wrap}
+.lg{font-weight:800;font-size:20px;color:var(--ac)}.lg b{color:var(--ac2)}
+.pb{flex:1;min-width:140px;height:8px;background:var(--s3);border-radius:8px;overflow:hidden}.pb i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ac),var(--ac2));transition:width .4s}
+#pt{color:var(--t2);font-size:13px}
+.w{display:grid;grid-template-columns:260px minmax(0,1fr);gap:16px;padding:16px;max-width:1200px;margin:auto}
+aside{background:var(--s);border:1px solid var(--bd);border-radius:14px;padding:12px;align-self:start}
+aside h2{font-size:13px;margin:0 0 8px;color:var(--t2);text-transform:uppercase;letter-spacing:.06em}
+.li{display:flex;gap:10px;align-items:center;padding:9px 10px;border-radius:10px;cursor:pointer;color:var(--t2);border:1px solid transparent}
+.li:hover{background:var(--s2)}.li.on{background:var(--s3);color:var(--tx);border-color:var(--ac)}
+.li span{width:24px;text-align:center;flex:none}
+.card{background:var(--s);border:1px solid var(--bd);border-radius:14px;padding:16px;margin-bottom:16px}
+.card h3{margin:0 0 8px;font-size:16px;color:var(--ac2)}
+code{background:var(--s3);color:var(--ac);padding:1px 6px;border-radius:5px;font-family:ui-monospace,Consolas,monospace}
+textarea{display:block;position:relative;z-index:1;width:100%;min-height:250px;background:transparent;color:transparent;caret-color:#fff;border:1px solid var(--bd);border-radius:10px;padding:12px;font:14px/1.55 ui-monospace,Consolas,monospace;resize:vertical;tab-size:4;outline:0;scrollbar-width:none}textarea::-webkit-scrollbar{display:none}
+.ew{position:relative}#hl{position:absolute;inset:0;overflow:hidden;background:#05080f;border:1px solid var(--bd);border-radius:10px;padding:12px;font:14px/1.55 ui-monospace,Consolas,monospace;white-space:pre-wrap;word-wrap:break-word;color:#d6f5ff;tab-size:4;pointer-events:none}#hl i{font-style:normal}#hl .c,.exb .c{color:#7a8ba3}#hl .k,.exb .k{color:#ff79c6}#hl .s,.exb .s{color:#7ee787}#hl .n,.exb .n{color:#ffa657}#hl .f,.exb .f{color:#00b8ff}
+.exw{margin-top:14px;border-top:1px dashed var(--bd);padding-top:10px}.exb{background:#05080f;border:1px solid var(--bd);border-radius:10px;padding:12px;margin:8px 0;font:14px/1.55 ui-monospace,Consolas,monospace;white-space:pre-wrap;overflow-x:auto;color:#d6f5ff}.exb i{font-style:normal}
+textarea:focus{border-color:var(--ac)}
+.bt{background:var(--s3);color:var(--tx);border:1px solid var(--bd);border-radius:9px;padding:8px 14px;font:inherit;cursor:pointer}
+.bt:hover{border-color:var(--ac)}.bt.p{background:var(--ac);color:#04120c;border-color:var(--ac);font-weight:700}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+pre{margin:0;background:#05080f;border:1px solid var(--bd);border-radius:10px;padding:12px;min-height:80px;white-space:pre-wrap;font:14px/1.5 ui-monospace,Consolas,monospace;color:#9be7ff;overflow-x:auto}
+.p{color:var(--ac)}.r{color:#fff}.er{color:var(--rd)}
+.q button{display:block;width:100%;text-align:left;margin-top:8px}
+.q .ok{border-color:var(--ac);background:rgba(0,229,160,.15)}.q .no{border-color:var(--rd);background:rgba(255,107,107,.15)}
+#nx{display:none}
+@media(max-width:800px){.w{grid-template-columns:minmax(0,1fr);padding:10px}aside{display:flex;gap:6px;overflow-x:auto}aside h2{display:none}.li{white-space:nowrap}}
+/* QORA MUSHUKCHA */
+#rb{position:fixed;left:0;top:0;width:128px;z-index:50;touch-action:none;cursor:grab;user-select:none;--ly:0px;--lr:7deg;--es:1;--ps:1}
+#rb.hd{cursor:grabbing}@media(max-width:800px){#rb{width:100px}}
+.bb{position:absolute;left:50%;bottom:100%;margin-bottom:2px;translate:calc(-50% + var(--bx,0px)) 4px;width:max-content;max-width:min(250px,70vw);padding:9px 12px;border-radius:14px;background:var(--s2);border:1px solid var(--ac);font-size:13px;line-height:1.4;opacity:0;transition:opacity .2s,translate .2s;pointer-events:none;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+.bb.s{opacity:1;translate:calc(-50% + var(--bx,0px)) 0}.bb.dn{bottom:auto;top:100%;margin:2px 0 0}
+.cf{transform-origin:50% 92%;animation:br 3.6s ease-in-out infinite}@keyframes br{50%{transform:scaleY(1.03)}}
+.wk .cf{animation:wb .36s ease-in-out infinite}@keyframes wb{0%,100%{transform:rotate(-3deg)}25%,75%{transform:translateY(-5px)}50%{transform:rotate(3deg)}}
+.cr .cf{animation:none;transform:scale(1.12,.8)}.ar .cf{animation:none;transform:scale(.9,1.14)}
+.ld .cf{animation:ld .38s}@keyframes ld{0%{transform:scale(1.2,.72)}60%{transform:scale(.94,1.07)}}
+.hd .cf{animation:sw .5s ease-in-out infinite alternate}@keyframes sw{from{transform:rotate(-6deg)}to{transform:rotate(6deg)}}
+.lg{transform-box:fill-box;transform-origin:50% 8%}
+.wk .l1,.wk .l4{animation:st .36s ease-in-out infinite}.wk .l2,.wk .l3{animation:st .36s ease-in-out infinite .18s}@keyframes st{50%{transform:translateY(-9px)}}
+.hd .lg{animation:dg .45s ease-in-out infinite alternate}.hd .l2,.hd .l4{animation-delay:.2s}@keyframes dg{from{transform:rotate(-14deg)}to{transform:rotate(14deg)}}
+.ar .lg{transform:translateY(-3px) rotate(7deg)}
+[data-m=wave] .l2,[data-m=happy] .l2,[data-m=star] .l2{animation:wv .4s ease-in-out infinite alternate}@keyframes wv{from{transform:rotate(-135deg)}to{transform:rotate(-165deg)}}
+[data-m=play] .l1{animation:pl .25s ease-in-out infinite alternate}[data-m=play] .l2{animation:pm .25s ease-in-out infinite alternate .12s}
+@keyframes pl{from{transform:rotate(10deg)}to{transform:rotate(150deg)}}@keyframes pm{from{transform:rotate(-10deg)}to{transform:rotate(-150deg)}}
+[data-m=groom] .l2{animation:gr .5s ease-in-out infinite alternate}@keyframes gr{from{transform:rotate(-170deg)}to{transform:rotate(-160deg)}}
+.pd{opacity:0}[data-m=wave] .pd,[data-m=happy] .pd,[data-m=star] .pd,[data-m=groom] .pd{opacity:1}
+.tl{transform-origin:138px 170px;animation:wg 2.4s ease-in-out infinite}@keyframes wg{50%{transform:rotate(12deg)}}
+:is([data-m=happy],[data-m=star],[data-m=love],[data-m=wave],[data-m=play]) .tl{animation-duration:.5s}[data-m=grumpy] .tl{animation-duration:.25s}[data-m=sad] .tl,[data-m=cry] .tl{animation:none;transform:rotate(-16deg)}
+.el{transform-origin:62px 58px;animation:ta 7s infinite}.er{transform-origin:138px 58px;animation:tb 9s infinite}@keyframes ta{0%,90%,100%{transform:none}94%{transform:rotate(-9deg)}}@keyframes tb{0%,85%,100%{transform:none}90%{transform:rotate(9deg)}}
+:is([data-m=sad],[data-m=cry],[data-m=grumpy]) .el{animation:none;transform:rotate(-22deg)}:is([data-m=sad],[data-m=cry],[data-m=grumpy]) .er{animation:none;transform:rotate(22deg)}
+.hh{transform-origin:100px 130px;transition:transform .4s}:is([data-m=think],[data-m=curious]) .hh{transform:rotate(-8deg)}[data-m=sleepy] .hh,[data-m=yawn] .hh{transform:translateY(8px) rotate(4deg)}[data-m=sad] .hh{transform:translateY(4px)}
+[data-m=sleepy] .cf,[data-m=yawn] .cf{animation:lz 4s ease-in-out infinite}@keyframes lz{0%,100%{transform:scale(1.1,.84)}50%{transform:scale(1.12,.88)}}
+[data-m=grumpy] .cf{animation:sh .12s infinite alternate}@keyframes sh{to{transform:translateX(2px)}}
+.ee{transform:scale(var(--es));transition:transform .15s}.e2{transform:scale(calc(var(--es)*var(--e2,1)))}
+.pp{transform-box:fill-box;transform-origin:center;transform:scale(var(--ps));transition:transform .15s}#rbE{transition:transform .12s}
+.ld1,.ld2{transform-box:fill-box;transform-origin:50% 50%;transition:transform .15s}
+.ld1{transform:translateY(var(--ly)) rotate(var(--lr))}.ld2{transform:translateY(var(--ly)) rotate(calc(var(--lr)*-1))}
+.bk{transform-box:fill-box;transform-origin:center;animation:bk 4.5s infinite}@keyframes bk{0%,94%,100%{transform:scaleY(1)}97%{transform:scaleY(.1)}}
+[data-m=wow] .bk,[data-m=play] .bk{animation:none}
+#rb[data-m=wow]{--ly:-18px;--es:1.3;--ps:1.3}#rb[data-m=play]{--ly:-14px;--es:1.15;--ps:1.3;--lr:0deg}#rb[data-m=type]{--ly:-4px;--lr:0deg}
+#rb:is([data-m=think],[data-m=curious]){--lr:0deg;--ly:-9px}#rb[data-m=curious]{--e2:1.35}#rb[data-m=sad]{--lr:-14deg;--ly:4px}#rb[data-m=grumpy]{--lr:21deg;--ly:5px}#rb[data-m=groom]{--lr:0deg;--ly:2px}
+.ht{position:absolute;left:40%;top:0;pointer-events:none;font-size:20px;animation:fl 1.2s ease-out forwards}@keyframes fl{to{transform:translate(var(--dx),-80px);opacity:0}}
+#rb .ac{display:none}
+#rb .cf{animation:none!important}
+#rb[data-acc="1"] .a1,#rb[data-acc="2"] .a1,#rb[data-acc="3"] .a1,#rb[data-acc="4"] .a1,#rb[data-acc="2"] .a2,#rb[data-acc="3"] .a2,#rb[data-acc="4"] .a2,#rb[data-acc="3"] .a3,#rb[data-acc="4"] .a3,#rb[data-acc="4"] .a4{display:inline}
+#rb:is([data-m=cry],[data-m=sleepy],[data-m=yawn],[data-m=love],[data-m=dizzy],[data-m=shy],[data-m=happy],[data-m=wave]) .sg{display:none!important}
+.fx{animation:fx 1.8s ease-in-out infinite}.fx2{animation-delay:.9s}@keyframes fx{0%{opacity:0;transform:translateY(8px)}50%{opacity:1}100%{opacity:0;transform:translateY(-12px)}}
+.td{animation:td 1.1s ease-in infinite}@keyframes td{0%{opacity:1;transform:translateY(0)}100%{opacity:0;transform:translateY(24px)}}
+.sp{transform-box:fill-box;transform-origin:center;animation:sp .8s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.cf,.lg,.tl,.bk,.el,.er,.fx,.td,.sp{animation:none!important}}
+
+/* === YANGI HARAKAT ANIMATSIYALARI - 4 OYOQLAB YURISH === */
+.wk .l1{animation:walkLeg1 .32s ease-in-out infinite}
+.wk .l2{animation:walkLeg2 .32s ease-in-out infinite}
+.wk .l3{animation:walkLeg3 .32s ease-in-out infinite}
+.wk .l4{animation:walkLeg4 .32s ease-in-out infinite}
+@keyframes walkLeg1{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-11px) rotate(12deg)}50%{transform:translateY(-2px) rotate(-4deg)}}
+@keyframes walkLeg2{0%,100%{transform:translateY(-2px) rotate(-4deg)}25%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-11px) rotate(-12deg)}75%{transform:translateY(-2px) rotate(4deg)}}
+@keyframes walkLeg3{0%,100%{transform:translateY(0) rotate(0deg)}25%{transform:translateY(-10px) rotate(-10deg)}50%{transform:translateY(0) rotate(0deg)}}
+@keyframes walkLeg4{0%,100%{transform:translateY(-10px) rotate(10deg)}50%{transform:translateY(0) rotate(0deg)}75%{transform:translateY(-2px) rotate(-4deg)}}
+.wk .cf{animation:bodyBob .32s ease-in-out infinite}
+@keyframes bodyBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.wk .tl{animation:tailWalk .32s ease-in-out infinite}
+@keyframes tailWalk{0%,100%{transform:rotate(8deg)}50%{transform:rotate(22deg)}}
+
+/* Tepaga tirmashish */
+.climb .cf{animation:climbBody .45s ease-in-out infinite}
+.climb .l1{animation:climbA .35s ease-in-out infinite}
+.climb .l2{animation:climbB .35s ease-in-out infinite .15s}
+.climb .l3{animation:climbA .35s ease-in-out infinite .1s}
+.climb .l4{animation:climbB .35s ease-in-out infinite .25s}
+@keyframes climbBody{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes climbA{0%,100%{transform:translateY(-2px) rotate(-20deg)}50%{transform:translateY(-14px) rotate(25deg)}}
+@keyframes climbB{0%,100%{transform:translateY(-14px) rotate(25deg)}50%{transform:translateY(-2px) rotate(-20deg)}}
+.climb .tl{animation:climbTail .3s ease-in-out infinite}
+@keyframes climbTail{0%,100%{transform:rotate(-10deg)}50%{transform:rotate(15deg)}}
+
+/* Pastga orqamachoq sirpanish */
+.slide .cf{transform:rotate(-12deg) scale(.95,1.05);animation:slideWiggle .2s ease-in-out infinite}
+@keyframes slideWiggle{0%,100%{transform:rotate(-12deg)}50%{transform:rotate(-8deg)}}
+.slide .tl{transform:rotate(35deg)!important;animation:none}
+
+/* Sakrash kuchaygan */
+.cr .cf{transform:scale(1.15,.75) translateY(4px)}
+.ar .cf{transform:scale(.9,1.2) translateY(-4px)}
+
+
+/* === BARCHA HARAKATLAR UCHUN CSS === */
+.run .cf{animation:runBody .18s ease-in-out infinite}
+.run .l1{animation:runLeg1 .18s ease-in-out infinite}
+.run .l2{animation:runLeg2 .18s ease-in-out infinite .06s}
+.run .l3{animation:runLeg3 .18s ease-in-out infinite .03s}
+.run .l4{animation:runLeg4 .18s ease-in-out infinite .09s}
+.run .tl{animation:runTail .15s ease-in-out infinite; transform-origin:138px 170px}
+@keyframes runBody{0%,100%{transform:translateY(0) scale(1,1)}50%{transform:translateY(-2px) scale(1.02,.98)}}
+@keyframes runLeg1{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-14px) rotate(20deg)}}
+@keyframes runLeg2{0%,100%{transform:translateY(-14px) rotate(20deg)}50%{transform:translateY(0) rotate(-8deg)}}
+@keyframes runLeg3{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-12px) rotate(15deg)}}
+@keyframes runLeg4{0%,100%{transform:translateY(-12px) rotate(15deg)}50%{transform:translateY(0) rotate(-5deg)}}
+@keyframes runTail{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(15deg)}}
+
+.sneak .cf{transform:scale(1.1,.85) translateY(8px); animation:sneakBody 1.2s ease-in-out infinite}
+.sneak .l1,.sneak .l3{animation:sneakLeg .6s ease-in-out infinite}
+.sneak .l2,.sneak .l4{animation:sneakLeg .6s ease-in-out infinite .3s}
+@keyframes sneakBody{0%,100%{transform:scale(1.1,.85) translateY(8px)}50%{transform:scale(1.12,.82) translateY(9px)}}
+@keyframes sneakLeg{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+.sit .cf{animation:sitAnim .4s ease-out forwards}
+@keyframes sitAnim{to{transform:scale(1.05,.85) translateY(12px)}}
+.sit .l1,.sit .l2{transform:translateY(12px) rotate(0deg)}
+.sit .l3,.sit .l4{transform:translateY(18px) rotate(15deg) scale(.9)}
+
+.lie .cf{animation:lieAnim .5s ease-out forwards}
+@keyframes lieAnim{to{transform:scale(1.3,.6) translateY(22px) rotate(-2deg)}}
+.lie .tl{transform:rotate(80deg)!important}
+
+.stretch .cf{animation:stretchAnim 1.2s ease-in-out forwards}
+@keyframes stretchAnim{0%{transform:scale(1,1)}30%{transform:scale(1.4,.7) translateY(14px)}70%{transform:scale(.85,1.25) translateY(-8px)}100%{transform:scale(1,1)}}
+
+.scratch .l1{animation:scratchL 0.2s ease-in-out infinite}
+.scratch .l2{animation:scratchL 0.2s ease-in-out infinite .1s}
+@keyframes scratchL{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-8px) rotate(-25deg)}}
+.scratch .cf{transform:rotate(8deg)}
+
+.pounce .cf{animation:pouncePrep .25s ease-in forwards, pounceJump .4s ease-out .25s forwards}
+@keyframes pouncePrep{to{transform:scale(1.2,.7) translateY(10px)}}
+@keyframes pounceJump{0%{transform:scale(1.2,.7) translateY(10px)}50%{transform:scale(.8,1.3) translateY(-20px)}100%{transform:scale(1,1) translateY(0)}}
+
+.knead .l1{animation:kneadA .4s ease-in-out infinite}
+.knead .l2{animation:kneadB .4s ease-in-out infinite .2s}
+@keyframes kneadA{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-6px) rotate(10deg)}}
+@keyframes kneadB{0%,100%{transform:translateY(-6px) rotate(10deg)}50%{transform:translateY(0) rotate(0deg)}}
+
+.celebrate .cf{animation:celebrateSpin .6s ease-in-out infinite}
+@keyframes celebrateSpin{0%{transform:rotate(0deg) scale(1)}25%{transform:rotate(12deg) scale(1.15)}50%{transform:rotate(-12deg) scale(1.1)}75%{transform:rotate(8deg) scale(1.15)}100%{transform:rotate(0deg) scale(1)}}
+.celebrate .tl{animation:celebrateTail .2s ease-in-out infinite}
+@keyframes celebrateTail{0%,100%{transform:rotate(-20deg)}50%{transform:rotate(30deg)}}
+
+.confused .hh{animation:confusedHead .3s ease-in-out infinite alternate}
+@keyframes confusedHead{from{transform:rotate(-12deg)}to{transform:rotate(12deg)}}
+
+/* Butterfly & Yarn */
+#butterfly{position:fixed;width:28px;height:28px;z-index:60;pointer-events:none;transition:transform .1s;font-size:24px;display:none}
+#yarn{position:fixed;width:60px;height:4px;background:linear-gradient(90deg,#ff7ac8,#ffd84d);border-radius:2px;z-index:59;pointer-events:none;display:none;transform-origin:left center}
+.confetti{position:fixed;pointer-events:none;z-index:100;font-size:18px;animation:confFall 1.5s ease-out forwards}
+@keyframes confFall{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(300px) rotate(720deg);opacity:0}}
+
+
+/* Autocomplete */
+#acBox{position:absolute;left:12px;bottom:14px;z-index:5;background:var(--s2);border:1px solid var(--ac);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.5);min-width:180px;max-width:260px;display:none;overflow:hidden}
+#acBox.show{display:block}
+.acItem{padding:8px 12px;cursor:pointer;font:14px ui-monospace,Consolas,monospace;color:var(--tx);display:flex;justify-content:space-between;gap:8px}
+.acItem:hover,.acItem.on{background:var(--s3);color:var(--ac)}
+.acItem small{color:var(--t2);font-size:11px}
+
+
+/* === SOZLAMALAR PANELI - HAMMA NARSANI O'CHIRISH/YOQISH === */
+#settingsBtn{position:fixed;right:14px;bottom:14px;z-index:80;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--ac),var(--ac2));border:none;color:#000;font-size:26px;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.4)}
+#settingsPanel{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);display:none;overflow-y:auto;padding:20px}
+#settingsPanel.open{display:block}
+.settingsCard{max-width:520px;margin:20px auto;background:var(--s);border:1px solid var(--bd);border-radius:16px;padding:18px}
+.settingsCard h2{margin:0 0 14px;font-size:18px;color:var(--ac)}
+.settingRow{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--s3);gap:12px}
+.settingRow:last-child{border:none}
+.switch{position:relative;width:48px;height:28px;background:var(--s3);border-radius:28px;cursor:pointer;transition:.2s;flex:none}
+.switch.on{background:var(--ac)}
+.switch i{position:absolute;left:3px;top:3px;width:22px;height:22px;background:#fff;border-radius:50%;transition:.2s}
+.switch.on i{transform:translateX(20px)}
+.iconGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:10px}
+.iconOpt{aspect-ratio:1;border:2px solid transparent;border-radius:12px;overflow:hidden;cursor:pointer;background:var(--s2);padding:2px}
+.iconOpt.selected{border-color:var(--ac);box-shadow:0 0 0 3px rgba(0,229,160,.3)}
+.iconOpt img{width:100%;height:100%;object-fit:cover;border-radius:8px}
+#floatingCat{position:fixed;right:16px;top:50%;width:64px;height:64px;z-index:70;border-radius:50%;background:var(--s2);border:2px solid var(--ac);display:none;align-items:center;justify-content:center;font-size:32px;cursor:grab;touch-action:none;box-shadow:0 6px 18px rgba(0,0,0,.4);user-select:none}
+#floatingCat.show{display:flex}
+#floatingCat img{width:90%;height:90%;border-radius:50%;object-fit:cover}
+
+
+/* === ULTIMATE PRO MAX - XP, TAMAGOTCHI, SHOP, WIDGET, MASALA BANKI === */
+#xpBar{position:fixed;top:0;left:0;right:0;height:4px;background:var(--s3);z-index:100}
+#xpBar i{display:block;height:100%;background:linear-gradient(90deg,#ffd93d,#ff6b6b,#00e5a0);width:0;transition:width .5s}
+#topStats{display:flex;gap:10px;align-items:center;padding:8px 16px;background:var(--s);border-bottom:1px solid var(--bd);flex-wrap:wrap}
+.statChip{background:var(--s2);border:1px solid var(--bd);border-radius:20px;padding:4px 10px;font-size:12px;display:flex;gap:6px;align-items:center}
+#tamagotchi{position:fixed;right:10px;top:70px;width:90px;z-index:60;background:var(--s);border:1px solid var(--bd);border-radius:14px;padding:8px;text-align:center;display:none}
+#tamagotchi.show{display:block}
+#tamagotchi .cat{font-size:36px;animation:br 2s infinite}
+.tamaBar{height:6px;background:var(--s3);border-radius:4px;overflow:hidden;margin:4px 0}
+.tamaBar i{display:block;height:100%;background:var(--ac);width:70%;transition:width .5s}
+#shopModal{position:fixed;inset:0;z-index:250;background:rgba(0,0,0,.8);display:none;overflow-y:auto;padding:20px}
+#shopModal.open{display:block}
+.shopGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:10px;margin-top:10px}
+.shopItem{background:var(--s2);border:1px solid var(--bd);border-radius:12px;padding:10px;text-align:center;cursor:pointer}
+.shopItem.owned{border-color:var(--ac);background:rgba(0,229,160,.1)}
+.shopItem .ico{font-size:28px}
+#masalaBank{max-width:700px;margin:20px auto;background:var(--s);border:1px solid var(--bd);border-radius:14px;padding:16px;display:none}
+#masalaBank.open{display:block}
+.problem{padding:10px;border-bottom:1px solid var(--s3);display:flex;justify-content:space-between;align-items:center;gap:10px}
+#widgetSim{position:fixed;left:10px;bottom:80px;width:160px;background:linear-gradient(135deg,var(--s),var(--s2));border:1px solid var(--ac);border-radius:12px;padding:10px;z-index:65;display:none;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+#widgetSim.show{display:block}
+#appBlocker{position:fixed;inset:0;z-index:300;background:#000;display:none;align-items:center;justify-content:center;flex-direction:column;padding:20px;text-align:center}
+#appBlocker.show{display:flex}
+
+</style><script>if('serviceWorker' in navigator){navigator.serviceWorker.register('./sw.js');}</script></head><body>
+<header><div class="lg">Cpp<b>Uz</b> ⚡ <small style="color:var(--yl);font-weight:600">Kamola uchun 💛</small></div><div class="pb"><i id="pf"></i></div><div id="pt"></div><button class="bt" id="mu" title="Robot ovozi">🔊</button><button class="bt" id="rs">Qayta boshlash</button></header>
+<div class="w">
+<aside><h2>O'quv yo'li</h2><div id="sb"></div></aside>
+<main>
+<div class="card"><h3 id="ti"></h3><div id="th"></div></div>
+<div class="card"><h3>Interaktiv kod muharriri</h3><div class="ew"><div id="hl" aria-hidden="true"></div><textarea id="ed" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea><div id="acBox"></div></div>
+<div class="row"><button class="bt p" id="run">▶ Ishga tushirish</button><button class="bt" id="demo">🤖 Robot ko'rsatsin</button><button class="bt" id="rst">↺ Boshiga</button><button class="bt" id="explain">🎓 Tushuntir</button></div></div>
+<div class="card"><h3>Natija (Terminal)</h3><pre id="tm"><span class="p">$</span> Kodni ishga tushiring…</pre></div>
+<div class="card q"><h3>Bilimni mustahkamlash</h3><div id="qz"></div></div>
+<button class="bt p" id="nx">Keyingi dars →</button>
+</main></div>
+
+<div id="butterfly">🦋</div><div id="yarn"></div><div id="rb" role="img" aria-label="Robot-ustoz. Sudrab surish va o'ynash mumkin"><div class="bb" id="bb" role="status" aria-live="polite"></div>
+<div class="fc"><div class="cf"><canvas id="robotCv" width="384" height="384" style="display:block;width:100%;height:auto;pointer-events:none"></canvas></div></div></div>
+
+<script src="interp.js"></script><script src="lessons2.js"></script>
+<script>
+const $=s=>document.querySelector(s),pick=a=>a[Math.floor(Math.random()*a.length)],esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const T=b=>`#include <iostream>\nusing namespace std;\n\nint main() {\n${b}\n    return 0;\n}`;
+const TM=b=>T(b).replace('#include <iostream>','#include <iostream>\n#include <cmath>');
+const FN=`#include <iostream>\nusing namespace std;\n\nint kvadrat(int n) {\n__\n}\n\nint main() {\n    cout << kvadrat(6) << endl;\n    return 0;\n}`;
+const L=[
+{t:"Salom, dunyo!",th:`<p>Har bir C++ dasturi <code>main()</code> funksiyasidan boshlanadi. Ekranga yozish uchun <code>cout</code>, oqim operatori <code>&lt;&lt;</code> va yangi qator uchun <code>endl</code> ishlatiladi. Har bir buyruq <code>;</code> bilan tugaydi.</p><p><b>Topshiriq:</b> ekranga <code>Salom, dunyo!</code> chiqaring.</p>`,
+ s:T('    // Ekranga: Salom, dunyo! chiqaring\n    '),a:T('    cout << "Salom, dunyo!" << endl;'),o:"Salom, dunyo!",r:/cout\s*<</,h:"cout << \"matn\" << endl; ko'rinishida yozing.",
+ m:"Salom! Men robot-ustozingizman 🤖 Harakatni boshlang: ekranga cout bilan yozamiz!",q:["Har bir buyruq qaysi belgi bilan tugaydi?",[";",".",":"],0,"C++ da buyruq oxiri nuqtali vergul (;) bilan belgilanadi."]},
+{t:"O'zgaruvchilar",th:`<p>O'zgaruvchi — qiymat saqlaydigan quti. Turlari: <code>int</code> (butun), <code>double</code> (kasr), <code>string</code> (matn), <code>bool</code> (ha/yo'q).</p><p>Misol: <code>int yosh = 15;</code></p><p><b>Topshiriq:</b> <code>yosh</code> nomli int o'zgaruvchiga 15 ni yozing va <code>Yosh: 15</code> deb chiqaring.</p>`,
+ s:T('    // int yosh = 15; yarating va "Yosh: 15" chiqaring\n    '),a:T('    int yosh = 15;\n    cout << "Yosh: " << yosh << endl;'),o:"Yosh: 15",r:/int\s+\w+\s*=\s*15/,h:"int yosh = 15; deb yozib, cout << \"Yosh: \" << yosh; qiling.",
+ ex:T(`    string ism = "Kamola";\n    int sinf = 9;\n    cout << ism << " " << sinf << "-sinfda o'qiydi" << endl;`),exo:"Kamola 9-sinfda o'qiydi",exn:`<p>1) <code>string ism = "Kamola";</code> — matn saqlaydi.<br>2) <code>int sinf = 9;</code> — butun son saqlaydi.<br>3) <code>cout</code> ularni <code>&lt;&lt;</code> bilan ketma-ket chiqaradi. Matn qo'shtirnoq ichida, o'zgaruvchi esa qo'shtirnoqsiz yoziladi.</p>`,
+ m:"Endi o'zgaruvchilar! Ularni qiymat saqlaydigan quti deb tasavvur qiling. Harakatni boshlang!",q:["3.14 ni saqlash uchun qaysi tur mos?",["int","double","bool"],1,"Kasr sonlar double yoki float turida saqlanadi."]},
+{t:"int bilan hisoblash",th:`<p><code>int</code> — butun sonlar. Amallar: <code>+</code> qo'shish, <code>-</code> ayirish, <code>*</code> ko'paytirish, <code>/</code> bo'lish, <code>%</code> qoldiq. Muhim: butun sonlarni bo'lganda <b>kasr qismi tashlab yuboriladi</b>: 17 / 5 = 3 (3.4 emas), 17 % 5 = 2.</p><p>Amallar tartibi maktabdagidek: avval qavs, keyin <code>* / %</code>, so'ng <code>+ -</code>.</p><p><b>Topshiriq:</b> <code>a</code> va <code>b</code> uchun yig'indi, ayirma, ko'paytma, bo'linma va qoldiqni chiqaring (har biri alohida qatorda): <code>22 12 85 3 2</code>.</p>`,
+ s:T(`    int a = 17, b = 5;\n    // a+b, a-b, a*b, a/b, a%b ni chiqaring (har biri alohida qatorda)\n    `),a:T(`    int a = 17, b = 5;\n    cout << a + b << endl;\n    cout << a - b << endl;\n    cout << a * b << endl;\n    cout << a / b << endl;\n    cout << a % b << endl;`),o:"22 12 85 3 2",r:/%/,h:"Beshta cout yozing: a + b, a - b, a * b, a / b va a % b.",
+ ex:T(`    int x = 20, y = 6;\n    cout << "Yig'indi: " << x + y << endl;\n    cout << "Bo'linma: " << x / y << endl;\n    cout << "Qoldiq: " << x % y << endl;`),exo:"Yig'indi: 26 Bo'linma: 3 Qoldiq: 2",exn:`<p>20 / 6 = 3,33… lekin <code>int</code> kasrni tashlaydi, shuning uchun <b>3</b> chiqadi. Qoldiq (<code>%</code>) esa 20 - 6·3 = <b>2</b>.</p>`,
+ m:"Endi hisoblash vaqti! int bilan to'rt amal va qoldiqni o'rganamiz. Harakatni boshlang!",q:["17 % 5 nimaga teng?",["2","3","3.4"],0,"17 ni 5 ga bo'lsak 3 chiqadi va 2 qoldiq qoladi."]},
+{t:"double: kasr sonlar",th:`<p><code>double</code> — kasr sonlar (3.14, 2.5). Agar ikkala son ham <code>int</code> bo'lsa, bo'linma <b>butun</b> chiqadi. Kasr natija kerak bo'lsa, kamida bitta son <code>double</code> bo'lishi kerak: <code>7.0 / 2</code> yoki <code>double x = 7;</code>.</p><p><b>Topshiriq:</b> 7 ni 2 ga to'g'ri (kasr bilan) bo'ling va <code>3.5</code> chiqaring.</p>`,
+ s:T(`    int a = 7, b = 2;\n    // int bilan 7 / 2 = 3 chiqadi. Kasr natija uchun nima qilish kerak?\n    `),a:T(`    double x = 7, y = 2;\n    cout << x / y << endl;`),o:"3.5",r:/double|static_cast|\d\.\d/,h:"double x = 7, y = 2; deb e'lon qilib, cout << x / y; yozing.",
+ ex:T(`    cout << 9 / 2 << endl;\n    cout << 9.0 / 2 << endl;\n    double r = 10;\n    cout << r / 4 << endl;`),exo:"4 4.5 2.5",exn:`<p><code>9 / 2</code> — ikkalasi ham int, natija <b>4</b>. <code>9.0 / 2</code> — bittasi double, natija <b>4.5</b>. <code>r</code> double bo'lgani uchun <code>r / 4</code> = <b>2.5</b>.</p>`,
+ m:"Endi kasr sonlar: double. Bo'lishdagi mashhur tuzoqni birga ko'ramiz!",q:["9 / 2 (ikkalasi int) nimaga teng?",["4.5","4","5"],1,"int / int natijasi butun bo'ladi, kasr tashlanadi."]},
+{t:"string: matn bilan ishlash",th:`<p><code>string</code> — matn. Matnlarni <code>+</code> bilan ulash mumkin: <code>"Salom, " + ism</code>. Matn uzunligi: <code>ism.length()</code>. Harfga murojaat: <code>ism[0]</code> (birinchi harf, sanoq 0 dan boshlanadi).</p><p><b>Topshiriq:</b> <code>salom</code> matnini <code>"Salom, "</code>, <code>ism</code> va <code>"!"</code> dan yarating, uni chiqaring, keyin <code>ism</code> uzunligini ham chiqaring: <code>Salom, Kamola! 6</code>.</p>`,
+ s:T(`    string ism = "Kamola";\n    // string salom = "Salom, " + ism + "!"; yarating, uni va ism.length() ni chiqaring\n    `),a:T(`    string ism = "Kamola";\n    string salom = "Salom, " + ism + "!";\n    cout << salom << endl;\n    cout << ism.length() << endl;`),o:"Salom, Kamola! 6",r:/length\(\)|size\(\)/,h:"cout << salom << endl; va cout << ism.length() << endl; yozing.",
+ ex:T(`    string soz = "C++";\n    string gap = soz + " zo'r!";\n    cout << gap << endl;\n    cout << soz.length() << endl;\n    cout << soz[0] << endl;`),exo:"C++ zo'r! 3 C",exn:`<p><code>soz + " zo'r!"</code> matnlarni ulaydi. <code>"C++"</code> da 3 ta belgi bor, shuning uchun <code>length()</code> = <b>3</b>. <code>soz[0]</code> — birinchi belgi, <b>C</b>.</p>`,
+ m:"Endi matnlar: string. Ularni ulash va uzunligini topishni o'rganamiz. Boshlang!",q:["\"Salom\".length() nimaga teng?",["4","5","6"],1,"Salom so'zida 5 ta harf bor."]},
+{t:"Matematik funksiyalar",th:`<p><code>#include &lt;cmath&gt;</code> qo'shsangiz, matematik funksiyalar ishlaydi: <code>sqrt(x)</code> — ildiz, <code>pow(a, n)</code> — daraja (aⁿ), <code>abs(x)</code> — modul, <code>round(x)</code> — yaxlitlash.</p><p><b>Topshiriq:</b> 144 ning kvadrat ildizini va 2 ning 8-darajasini chiqaring: <code>12 256</code>.</p>`,
+ s:TM(`    // sqrt(144) va pow(2, 8) ni chiqaring\n    `),a:TM(`    cout << sqrt(144) << endl;\n    cout << pow(2, 8) << endl;`),o:"12 256",r:/sqrt\s*\(/,h:"cout << sqrt(144) << endl; va cout << pow(2, 8) << endl; yozing.",
+ ex:TM(`    cout << sqrt(81) << endl;\n    cout << pow(3, 4) << endl;\n    cout << abs(-15) << endl;\n    cout << round(7.6) << endl;`),exo:"9 81 15 8",exn:`<p>√81 = <b>9</b>, 3⁴ = <b>81</b>, |-15| = <b>15</b>, 7.6 ni yaxlitlasak <b>8</b>.</p>`,
+ m:"Endi matematik funksiyalar: ildiz va daraja. cmath kutubxonasi yordam beradi!",q:["pow(2, 3) nimaga teng?",["6","8","9"],1,"2 ning 3-darajasi: 2·2·2 = 8."]},
+{t:"Formulalar va masalalar",th:`<p>Formulalarni kodga o'giramiz. To'g'ri to'rtburchak: yuzi <code>a * b</code>, perimetri <code>2 * (a + b)</code>. Avval o'zgaruvchilar, keyin formula, oxirida <code>cout</code>.</p><p><b>Topshiriq:</b> tomonlari 8 va 5 bo'lgan to'g'ri to'rtburchakning yuzi va perimetrini toping: <code>Yuz: 40</code> va <code>Perimetr: 26</code>.</p>`,
+ s:T(`    int a = 8, b = 5;\n    // yuz = a * b, perimetr = 2 * (a + b) ni hisoblab chiqaring\n    `),a:T(`    int a = 8, b = 5;\n    int yuz = a * b;\n    int perimetr = 2 * (a + b);\n    cout << "Yuz: " << yuz << endl;\n    cout << "Perimetr: " << perimetr << endl;`),o:"Yuz: 40 Perimetr: 26",r:/\*/,h:"int yuz = a * b; int perimetr = 2 * (a + b); deb hisoblab, ikkalasini cout bilan chiqaring.",
+ ex:T(`    double r = 10, pi = 3.14;\n    double yuz = pi * r * r;\n    cout << "Aylana yuzi: " << yuz << endl;\n    int soat = 135;\n    cout << soat / 60 << " soat " << soat % 60 << " daqiqa" << endl;`),exo:"Aylana yuzi: 314 2 soat 15 daqiqa",exn:`<p>πr² = 3.14 · 10 · 10 = <b>314</b>. 135 daqiqa: 135 / 60 = <b>2</b> soat va 135 % 60 = <b>15</b> daqiqa. <code>/</code> va <code>%</code> bunday masalalarda juda qo'l keladi.</p>`,
+ m:"Endi haqiqiy masalalar! Formulani kodga aylantiramiz. Harakatni boshlang!",q:["135 daqiqada nechta to'liq soat bor? (135 / 60, int)",["2","2.25","3"],0,"int bo'lishda kasr tashlanadi: 135 / 60 = 2."]},
+{t:"Shart: if / else",th:`<p><code>if (shart) { ... } else { ... }</code> — shart rost bo'lsa birinchi blok, aks holda <code>else</code> bajariladi. Taqqoslash: <code>&gt; &lt; == != &gt;= &lt;=</code>.</p><p><b>Topshiriq:</b> agar <code>a &gt; b</code> bo'lsa, <code>a katta</code> deb chiqaring.</p>`,
+ s:T('    int a = 7, b = 3;\n    // Agar a > b bo\'lsa, "a katta" chiqaring\n    '),a:T('    int a = 7, b = 3;\n    if (a > b) {\n        cout << "a katta" << endl;\n    }'),o:"a katta",r:/if\s*\(/,h:"if (a > b) { cout << \"a katta\" << endl; } yozing.",
+ m:"Dastur qaror qabul qilishi uchun if kerak. Mantiq vaqti, boshlang!",q:["Shart noto'g'ri bo'lsa qaysi bo'lim ishlaydi?",["if ichi","else","Dastur to'xtaydi"],1,"if noto'g'ri bo'lsa else bo'limi bajariladi."]},
+{t:"for tsikli",th:`<p>Tsikl kodni takrorlaydi: <code>for (int i = 1; i &lt;= 5; i++) { ... }</code>. Uch qism: boshlanish, shart, qadam.</p><p><b>Topshiriq:</b> 1 dan 5 gacha raqamlarni probel bilan chiqaring: <code>1 2 3 4 5</code>.</p>`,
+ s:T('    // 1 dan 5 gacha: 1 2 3 4 5\n    '),a:T('    for (int i = 1; i <= 5; i++) {\n        cout << i << " ";\n    }\n    cout << endl;'),o:"1 2 3 4 5",r:/for\s*\(/,h:"for ichida cout << i << \" \"; deb yozing.",
+ m:"Bir ishni qayta-qayta yozmaymiz, tsikl bizga yordam beradi. Harakatni boshlang!",q:["for (int i=0; i<3; i++) necha marta aylanadi?",["2","3","4"],1,"i = 0, 1, 2 — jami 3 marta."]},
+{t:"Funksiyalar",th:`<p>Funksiya — qayta ishlatiladigan kod bloki: <code>int kvadrat(int n) { return n * n; }</code>. <code>return</code> natijani qaytaradi.</p><p><b>Topshiriq:</b> <code>kvadrat</code> funksiyasini to'ldiring, <code>kvadrat(6)</code> 36 chiqarsin.</p>`,
+ s:FN.replace('__','    // return ... yozing'),a:FN.replace('__','    return n * n;'),o:"36",r:/return/,h:"Funksiya ichida return n * n; yozing.",
+ m:"Oxirgi dars: funksiyalar. Siz deyarli C++ dasturchisiz, boshlang!",q:["Funksiyadan qiymat qaytaruvchi kalit so'z?",["return","break","cout"],0,"return funksiya natijasini chaqirilgan joyga qaytaradi."]}
+
+,{t:"while tsikli",th:`<p><code>for</code> da qadamlar soni aniq edi. <code>while</code> da esa shart rost bo'lganda takrorlaydi. Format: <code>while (shart) { ... }</code>. Ehtiyot bo'l: shart hech qachon yolg'on bo'lmasa <b>cheksiz tsikl</b> bo'ladi!</p><p><b>Topshiriq:</b> 1 dan 5 gacha sonlarni <code>while</code> bilan chiqaring: <code>1 2 3 4 5</code></p>`,
+ s:T(`    int i = 1;
+    // while bilan 1 dan 5 gacha chiqaring
+    `),a:T(`    int i = 1;
+    while (i <= 5) {
+        cout << i << " ";
+        i++;
+    }
+    cout << endl;`),o:"1 2 3 4 5",r:/while/,h:"while (i <= 5) { cout << i << \" \"; i++; } yozing.",
+ ex:T(`    int n = 3;
+    while (n > 0) {
+        cout << n << endl;
+        n--;
+    }`),exo:"3 2 1",exn:`<p><code>n</code> 3 dan boshlanadi. Har safar ekranga chiqarib, 1 ga kamaytiriladi. <code>n</code> 0 bo'lganda shart <code>n > 0</code> yolg'on bo'lib, tsikl tugaydi.</p>`,
+ m:"While tsikli! for dan farqi - qachon to'xtashini shart aytadi. Cheksiz tsikldan ehtiyot bo'ling! 🤖",q:["while qachon to'xtaydi?",["shart yolg'on bo'lganda","3 marta","hech qachon"],0,"while sharti false bo'lganda to'xtaydi, bo'lmasa cheksiz aylanadi."]}
+
+,{t:"do...while va break / continue",th:`<p><code>do...while</code> — avval bajaradi, keyin shartni tekshiradi. Kamida 1 marta ishlaydi. <code>break</code> — tsiklni sindiradi, <code>continue</code> — shu qadamni tashlab, keyingisiga o'tadi.</p><p><b>Topshiriq:</b> 1 dan 10 gacha, lekin 5 ni tashlab o'ting. Natija: <code>1 2 3 4 6 7 8 9 10</code></p>`,
+ s:T(`    for (int i = 1; i <= 10; i++) {
+        // 5 bo'lsa continue qiling
+    }
+    `),a:T(`    for (int i = 1; i <= 10; i++) {
+        if (i == 5) continue;
+        cout << i << " ";
+    }
+    cout << endl;`),o:"1 2 3 4 6 7 8 9 10",r:/continue/,h:"if (i == 5) continue; deb yozing, 5 ni tashlab o'tadi.",
+ ex:T(`    int i = 1;
+    do {
+        cout << i << " ";
+        i++;
+    } while (i <= 3);`),exo:"1 2 3",exn:`<p><code>do</code> bloki avval bajariladi, keyin <code>while</code> sharti tekshiriladi. Shuning uchun kamida 1 marta ishlashi kafolatli.</p>`,
+ m:"Break - qochish, continue - sakrash! do...while esa avval qiladi, keyin o'ylaydi! ✨",q:["continue nima qiladi?",["tsiklni tugatadi","joriy qadamni tashlab keyingisiga o'tadi","xatolik"],1,"continue joriy iteratsiyani o'tkazib yuboradi, break esa butun tsiklni to'xtatadi."]}
+
+,{t:"Mantiqiy amallar && || !",th:`<p>Murakkab shartlar: <code>&&</code> — VA (ikkala shart rost), <code>||</code> — YOKI (bittasi rost bo'lsa bo'ldi), <code>!</code> — EMAS (teskari).</p><p>Misol: <code>if (yosh >= 13 && yosh <= 19)</code> — o'smir.</p><p><b>Topshiriq:</b> a soni 10 dan katta VA juft bo'lsa "HA" chiqaring. a=12 uchun HA</p>`,
+ s:T(`    int a = 12;
+    // a > 10 && a % 2 == 0 bo'lsa HA chiqaring
+    `),a:T(`    int a = 12;
+    if (a > 10 && a % 2 == 0) {
+        cout << "HA" << endl;
+    }`),o:"HA",r:/&&/,h:"if (a > 10 && a % 2 == 0) { cout << \"HA\"; }",
+ ex:T(`    int yosh = 16;
+    if (yosh >= 13 && yosh <= 19) {
+        cout << "O'smir" << endl;
+    }
+    if (yosh < 13 || yosh > 19) {
+        cout << "O'smir emas" << endl;
+    }`),exo:"O'smir",exn:`<p>Birinchi shart: yosh 13 dan katta VA 19 dan kichik — rost. Ikkinchi shart YOKI bilan — yosh 13 dan kichik YOKI 19 dan katta bo'lsa.</p>`,
+ m:"&& - ikkalasi ham, || - bittasi bo'lsa bo'ldi, ! - teskarisi! Mantiq o'yini! 🤔",q:["Qaysi amal VA ni bildiradi?",["||","&&","!"],1,"&& - VA, || - YOKI, ! - EMAS"]}
+
+,{t:"switch / case",th:`<p>Ko'p tanlov bo'lganda <code>if else if else</code> uzun bo'lib ketadi. <code>switch</code> qulay: <code>switch (kun) { case 1: ... break; case 2: ... }</code>. <code>break</code> ni unutsang keyingi case ga ham kirib ketadi!</p><p><b>Topshiriq:</b> kun=2 bo'lsa "Seshanba" chiqaring</p>`,
+ s:T(`    int kun = 2;
+    switch (kun) {
+        // case larni yozing
+    }
+    `),a:T(`    int kun = 2;
+    switch (kun) {
+        case 1: cout << "Dushanba" << endl; break;
+        case 2: cout << "Seshanba" << endl; break;
+        case 3: cout << "Chorshanba" << endl; break;
+        default: cout << "Boshqa kun" << endl;
+    }`),o:"Seshanba",r:/switch/,h:"case 2: cout << \"Seshanba\" << endl; break; yozing",
+ ex:T(`    int baho = 5;
+    switch (baho) {
+        case 5: cout << "A'lo" << endl; break;
+        case 4: cout << "Yaxshi" << endl; break;
+        default: cout << "Qoniqarsiz" << endl;
+    }`),exo:"A'lo",exn:`<p>baho 5 ga teng, shuning uchun <code>case 5</code> ishlaydi va <code>break</code> bilan switch dan chiqadi. break bo'lmasa keyingi case ham ishlardi.</p>`,
+ m:"Switch - tanlovlar shkafchasi! Har bir case - tortma! break bilan yopishni unutmang! 🗄️",q:["break nima uchun kerak switch da?",["keyingi case ga o'tmaslik uchun","tsikl uchun","shart"],0,"break bo'lmasa kod keyingi case ga ham tushib ketadi (fall-through)."]}
+
+,{t:"Bir o'lchamli massiv int a[10]",th:`<p>Massiv — bir nom ostida ko'p qiymat: <code>int a[3] = {10, 20, 30};</code>. Elementlar 0 dan boshlanadi: <code>a[0]=10</code>, <code>a[1]=20</code>. Uzunligi: <code>sizeof(a)/sizeof(a[0])</code> emas, hozircha 3 deb bilamiz.</p><p><b>Topshiriq:</b> 3 ta sonli massivning yig'indisini chiqaring: 10+20+30=60</p>`,
+ s:T(`    int a[3] = {10, 20, 30};
+    // yig'indini hisoblang
+    `),a:T(`    int a[3] = {10, 20, 30};
+    int sum = a[0] + a[1] + a[2];
+    cout << sum << endl;`),o:"60",r:/a\[0\]/,h:"a[0] + a[1] + a[2] ni sum ga qo'shib chiqaring",
+ ex:T(`    int b[4] = {1, 2, 3, 4};
+    for (int i = 0; i < 4; i++) {
+        cout << b[i] << " ";
+    }`),exo:"1 2 3 4",exn:`<p>Massiv elementlarini <code>for</code> bilan aylanib chiqish odatiy usul. <code>i</code> 0 dan boshlanib, massiv uzunligigacha boradi.</p>`,
+ m:"Massiv - qutilar qatori! Har bir qutining raqami bor, 0 dan boshlanadi! 📦",q:["int a[3] da birinchi element qaysi?",["a[0]","a[1]","a[3]"],0,"C++ da massiv indeksi 0 dan boshlanadi, shuning uchun birinchi element a[0]."]}
+
+,{t:"Massivda qidirish va saralash",th:`<p>Massivda eng ko'p qilinadigan ishlar: yig'indi, eng katta <code>max</code>, eng kichik <code>min</code>, qidirish. Buning uchun <code>for</code> va <code>if</code> yetarli.</p><p><b>Topshiriq:</b> massivda eng kattasini toping. {5, 9, 2, 8} uchun 9 chiqsin</p>`,
+ s:T(`    int a[4] = {5, 9, 2, 8};
+    int max = a[0];
+    // for bilan max ni toping
+    `),a:T(`    int a[4] = {5, 9, 2, 8};
+    int max = a[0];
+    for (int i = 1; i < 4; i++) {
+        if (a[i] > max) max = a[i];
+    }
+    cout << max << endl;`),o:"9",r:/if.*a\[i\].*max/,h:"for da if (a[i] > max) max = a[i];",
+ ex:T(`    int a[5] = {2, 4, 6, 8, 10};
+    int sum = 0;
+    for (int i = 0; i < 5; i++) sum += a[i];
+    cout << sum << endl;`),exo:"30",exn:`<p>Barcha elementlarni yig'ish: sum ni 0 dan boshlab, har bir elementni qo'shib boramiz.</p>`,
+ m:"Massivda xazina qidirish! Eng kattasini topish uchun hammasini solishtiramiz! 🔍",q:["Eng kattani topishda max ni nimaga tenglaymiz?",["a[0] ga","0 ga","100 ga"],0,"max ni birinchi elementga tenglab, keyin qolganlari bilan solishtiramiz."]}
+
+,{t:"Ikki o'lchamli massiv (matritsa)",th:`<p>Jadval kabi: <code>int a[2][3] = {{1,2,3},{4,5,6}};</code> — 2 qator, 3 ustun. Murojaat: <code>a[0][1] = 2</code> (0-qator, 1-ustun). Ikki ta <code>for</code> bilan aylaniladi.</p><p><b>Topshiriq:</b> 2x2 matritsa yig'indisini chiqaring: {{1,2},{3,4}} = 10</p>`,
+ s:T(`    int a[2][2] = {{1,2},{3,4}};
+    int sum = 0;
+    // ikki for bilan sum hisoblang
+    `),a:T(`    int a[2][2] = {{1,2},{3,4}};
+    int sum = 0;
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            sum += a[i][j];
+        }
+    }
+    cout << sum << endl;`),o:"10",r:/a\[i\]\[j\]/,h:"Ichma-ich for: for i ... for j ... sum += a[i][j];",
+ ex:T(`    int m[2][2] = {{1,2},{3,4}};
+    for (int i = 0; i < 2; i++) {
+        for (int j = 0; j < 2; j++) {
+            cout << m[i][j] << " ";
+        }
+        cout << endl;
+    }`),exo:"1 2 \n3 4",exn:`<p>Tashqi for qatorlar bo'ylab, ichki for ustunlar bo'ylab yuradi. Har qator tugagach <code>endl</code> bilan yangi qatorga o'tamiz.</p>`,
+ m:"Matritsa - shaxmat taxtasi! Ikkita raqam kerak: qator va ustun! ♟️",q:["a[1][0] qaysi element 2x2 da {{1,2},{3,4}}?",["3","2","4"],0,"a[1][0] - 1-qator, 0-ustun = 3"]}
+
+,{t:"string massivlari va matn",th:`<p><code>string</code> massivi: <code>string ismlar[3] = {\"Ali\", \"Vali\", \"Kamola\"};</code>. Har bir ism alohida string. Matn uzunligi: <code>s.length()</code>, harf: <code>s[0]</code>.</p><p><b>Topshiriq:</b> ismlar massivida "Kamola" borligini tekshirib "Topildi" chiqaring</p>`,
+ s:T(`    string ismlar[3] = {"Ali", "Vali", "Kamola"};
+    // Kamola borligini tekshiring
+    `),a:T(`    string ismlar[3] = {"Ali", "Vali", "Kamola"};
+    for (int i = 0; i < 3; i++) {
+        if (ismlar[i] == "Kamola") {
+            cout << "Topildi" << endl;
+        }
+    }`),o:"Topildi",r:/Kamola/,h:"for da if (ismlar[i] == \"Kamola\") cout << \"Topildi\";",
+ ex:T(`    string s = "Kamola";
+    cout << s.length() << endl;
+    cout << s[0] << endl;`),exo:"6\nK",exn:`<p><code>length()</code> matn uzunligini, <code>s[0]</code> esa birinchi harfni beradi.</p>`,
+ m:"Ismlar ro'yxati! String massivi - har bir element alohida ism! 👧👦",q:["string da uzunlik qanday olinadi?",["length()","size","len"],0,"C++ da string uzunligi s.length() yoki s.size() bilan olinadi."]}
+
+,{t:"Funksiya parametrlari, return turlari",th:`<p>Funksiya parametr oladi va qiymat qaytaradi: <code>int yig(int a, int b) { return a+b; }</code>. <code>void</code> — hech narsa qaytarmaydi. Parametrlar nusxa bo'lib uzatiladi.</p><p><b>Topshiriq:</b> ikki sonning kattasini qaytaradigan <code>max2</code> funksiyasini yozing. max2(5,9)=9</p>`,
+ s:T(`    // max2 funksiyasini yozing
+    int max2(int a, int b) {
+        __
+    }
+    `),a:T(`    int max2(int a, int b) {
+        if (a > b) return a;
+        else return b;
+    }
+    `),o:"9",r:/return/,h:"if (a > b) return a; else return b;",
+ ex:T(`    int add(int x, int y) { return x + y; }
+    int main() {
+        cout << add(3,4) << endl;
+    }`),exo:"7",exn:`<p><code>add</code> funksiyasi ikki sonni qo'shib qaytaradi. main da chaqiramiz.</p>`,
+ m:"Funksiya - retsept! Mahsulot berasan (parametr), taom qaytadi (return)! 🍳",q:["void funksiya nima qaytaradi?",["hech narsa","int","string"],0,"void hech narsa qaytarmaydi, faqat ish bajaradi."]}
+
+,{t:"Rekursiya - o'zini chaqiradigan funksiya",th:`<p>Rekursiya — funksiya o'zini chaqiradi! Ikki ko'zgu bir-biriga qarasa, aks cheksiz takrorlanadi! Har doim to'xtash sharti bo'lishi kerak, bo'lmasa cheksiz!</p><p>Misol: faktorial 5! = 5*4*3*2*1. <code>fact(n) = n * fact(n-1)</code>, <code>fact(1)=1</code>.</p><p><b>Topshiriq:</b> faktorial uchun rekursiv funksiya, fact(4)=24</p>`,
+ s:T(`    int fact(int n) {
+        if (n <= 1) return 1;
+        // rekursiv chaqiruv
+    }
+    `),a:T(`    int fact(int n) {
+        if (n <= 1) return 1;
+        return n * fact(n-1);
+    }
+    `),o:"24",r:/fact\(n-1\)/,h:"return n * fact(n-1);",
+ ex:T(`    int sumRec(int n) {
+        if (n == 1) return 1;
+        return n + sumRec(n-1);
+    }
+    // sumRec(3) = 3+2+1=6`),exo:"6",exn:`<p>Rekursiya yig'indini hisoblaydi: 3 + sumRec(2), sumRec(2) = 2 + sumRec(1) = 3, jami 6.</p>`,
+ m:"Rekursiya - ko'zgular zali! Funksiya o'zini chaqiradi, lekin to'xtash sharti shart! 🪞🤖",q:["Rekursiyada nima bo'lishi shart?",["to'xtash sharti","for","cout"],0,"To'xtash sharti bo'lmasa rekursiya cheksiz bo'lib ketadi va xotira to'lib qoladi."]}
+
+,{t:"vector - zamonaviy massiv",th:`<p><code>int a[10]</code> da o'lcham o'zgarmas. <code>vector</code> esa cho'ziluvchan: <code>vector&lt;int&gt; v;</code> <code>v.push_back(5);</code> — oxiriga qo'shadi. <code>v.size()</code> — uzunligi. <code>#include &lt;vector&gt;</code> kerak.</p><p><b>Topshiriq:</b> vector ga 1,2,3 ni qo'shib yig'indisi 6 chiqaring</p>`,
+ s:T(`    vector<int> v;
+    // push_back bilan 1,2,3 qo'shing va yig'indini chiqaring
+    `),a:T(`    vector<int> v;
+    v.push_back(1);
+    v.push_back(2);
+    v.push_back(3);
+    int sum = 0;
+    for (int x : v) sum += x;
+    cout << sum << endl;`),o:"6",r:/push_back/,h:"v.push_back(1); v.push_back(2); v.push_back(3); keyin for da yig'ing",
+ ex:T(`    vector<string> ismlar;
+    ismlar.push_back("Kamola");
+    ismlar.push_back("Ali");
+    cout << ismlar.size() << endl;
+    cout << ismlar[0] << endl;`),exo:"2\nKamola",exn:`<p>vector ga ismlarni qo'shamiz, size() 2 qaytaradi, 0-element Kamola.</p>`,
+ m:"Vector - cho'ziladigan sumka! Istalgancha narsa solish mumkin, push_back bilan! 👜",q:["vector ga element qanday qo'shiladi?",["push_back","add","insert"],0,"vector da push_back(x) oxiriga element qo'shadi."]}
+
+,{t:"struct - o'z ma'lumot turi",th:`<p><code>struct</code> - o'z tipingni yaratish! Masalan talaba: ism, yosh, baho. <code>struct Talaba { string ism; int yosh; };</code> Keyin <code>Talaba k; k.ism=\"Kamola\";</code></p><p><b>Topshiriq:</b> Talaba structida Kamola 15 yosh deb chiqaring: <code>Kamola 15</code></p>`,
+ s:T(`    struct Talaba { string ism; int yosh; };
+    Talaba t;
+    // t ni to'ldiring
+    `),a:T(`    struct Talaba { string ism; int yosh; };
+    Talaba t;
+    t.ism = "Kamola";
+    t.yosh = 15;
+    cout << t.ism << " " << t.yosh << endl;`),o:"Kamola 15",r:/struct/,h:"t.ism = \"Kamola\"; t.yosh = 15;",
+ ex:T(`    struct Robot { string nom; int yosh; };
+    Robot m; m.nom="Robo"; m.yosh=2;
+    cout << m.nom << " " << m.yosh << " yoshda" << endl;`),exo:"Robo 2 yoshda",exn:`<p>struct - bir nechta ma'lumotni bir joyga yig'ish. Nuqta bilan murojaat.</p>`,
+ m:"Struct - quti ichida qutilar! Talaba ichida ism va yosh! 📦",q:["struct da maydonga qanday murojaat?",["nuqta .","->","::"],0,"struct o'zgaruvchisiga nuqta bilan: t.ism"]}
+
+,{t:"Fayllar bilan ishlash",th:`<p>Natijani faylga saqlash: <code>#include &lt;fstream&gt;</code> <code>ofstream f(\"natija.txt\"); f << \"Salom\"; f.close();</code> O'qish: <code>ifstream</code>. Bu simulyatorda fayl haqiqiy emas, lekin sintaksisi o'rganamiz.</p><p><b>Topshiriq:</b> faylga "Kamola" yozish kodini yozing (cout o'rniga f <<)</p>`,
+ s:T(`    #include <fstream>
+    ofstream f("salom.txt");
+    // f ga Kamola yozing
+    `),a:T(`    #include <fstream>
+    ofstream f("salom.txt");
+    f << "Kamola" << endl;
+    f.close();`),o:"Kamola",r:/ofstream/,h:"f << \"Kamola\" << endl; f.close();",
+ ex:T(`    ofstream out("a.txt");
+    out << 123 << endl;
+    out.close();
+    ifstream in("a.txt");
+    int x; in >> x;
+    cout << x << endl;`),exo:"123",exn:`<p>Faylga yozish va o'qish. Real loyihalarda kerak.</p>`,
+ m:"Fayl - daftar! Yozib qo'yib, keyin o'qiysan! 📓",q:["Faylga yozish uchun qaysi class?",["ofstream","ifstream","cout"],0,"ofstream - output file stream, yozish uchun."]}
+
+,{t:"sort va vector algoritmlar",th:`<p><code>#include &lt;algorithm&gt;</code> da <code>sort(v.begin(), v.end())</code> - saralaydi. <code>reverse</code> - teskari qiladi.</p><p><b>Topshiriq:</b> {3,1,2} ni saralab 1 2 3 chiqaring</p>`,
+ s:T(`    #include <bits/stdc++.h>
+    vector<int> v = {3,1,2};
+    // sort qiling
+    `),a:T(`    #include <bits/stdc++.h>
+    vector<int> v = {3,1,2};
+    sort(v.begin(), v.end());
+    for(int x: v) cout << x << " ";
+    cout << endl;`),o:"1 2 3",r:/sort/,h:"sort(v.begin(), v.end());",
+ ex:T(`    vector<int> a={5,2,9};
+    sort(a.begin(), a.end());
+    cout << a[0] << endl;`),exo:"2",exn:`<p>Eng kichigi boshiga keladi.</p>`,
+ m:"Sort - sehrli tayoqcha! Tartibsiz sonlarni tartiblaydi! ✨",q:["sort qayerda?",["<algorithm>","<iostream>","<string>"],0,"sort <algorithm> yoki <bits/stdc++.h> da"]}
+
+,{t:"map va set - lug'at",th:`<p><code>map&lt;string,int&gt;</code> - kalit-qiymat: ism - baho. <code>m[\"Kamola\"]=5;</code> <code>set</code> - takrorlanmas to'plam.</p><p><b>Topshiriq:</b> map da Kamola=5 ni saqlab chiqaring: <code>5</code></p>`,
+ s:T(`    #include <bits/stdc++.h>
+    map<string,int> baho;
+    // Kamola=5
+    `),a:T(`    #include <bits/stdc++.h>
+    map<string,int> baho;
+    baho["Kamola"]=5;
+    cout << baho["Kamola"] << endl;`),o:"5",r:/map/,h:"baho[\"Kamola\"]=5;",
+ ex:T(`    set<int> s; s.insert(1); s.insert(1); s.insert(2);
+    cout << s.size() << endl;`),exo:"2",exn:`<p>set takrorni olmaydi, 1 faqat bir marta saqlanadi.</p>`,
+ m:"Map - lug'at! So'zni qidirsang ma'nosi chiqadi! 📚",q:["map da kalit takrorlanadimi?",["yo'q","ha","ba'zan"],0,"map da kalit yagona bo'ladi"]}
+
+,{t:"class - OOP ga kirish",th:`<p><code>class</code> - struct + funksiyalar! Robot class: nomi, yoshi va salom() funksiyasi.</p><p><b>Topshiriq:</b> Robot classidan obyekt yaratib salom() chaqiring, "Salom!" chiqsin</p>`,
+ s:T(`    class Robot {
+    public:
+        void salom() { cout << "Salom!" << endl; }
+    };
+    // obyekt yarat
+    `),a:T(`    class Robot {
+    public:
+        void salom() { cout << "Salom!" << endl; }
+    };
+    Robot m;
+    m.salom();`),o:"Salom!",r:/class/,h:"Robot m; m.salom();",
+ ex:T(`    class Talaba {
+    public: string ism;
+        void salom() { cout << "Salom " << ism << endl; }
+    };
+    Talaba t; t.ism="Kamola"; t.salom();`),exo:"Salom Kamola",exn:`<p>Class ichida ham ma'lumot ham funksiya bo'lishi mumkin.</p>`,
+ m:"Class - robot fabrikasi! Har bir robotning o'z funksiyalari bor! 🏭",q:["class da public nima?",["hammaga ochiq","yopiq","xato"],0,"public - tashqaridan kirish mumkin"]}
+
+,{t:"Pointer - manzil",th:`<p>Pointer - o'zgaruvchining manzili: <code>int a=5; int* p=&a;</code> <code>*p</code> - qiymat, <code>&a</code> - manzil. Murakkab, lekin muhim!</p><p><b>Topshiriq:</b> p orqali a ni 10 ga o'zgartiring, a=10 chiqsin</p>`,
+ s:T(`    int a = 5;
+    int* p = &a;
+    // *p bilan 10 qiling
+    `),a:T(`    int a = 5;
+    int* p = &a;
+    *p = 10;
+    cout << a << endl;`),o:"10",r:/\*p/,h:"*p = 10;",
+ ex:T(`    int x=7; int* y=&x; cout << *y << endl;`),exo:"7",exn:`<p>*y - y ko'rsatgan joydagi qiymat.</p>`,
+ m:"Pointer - xarita! Manzilni ko'rsatadi! 🗺️",q:["&a nima?",["a manzili","a qiymati","xato"],0,"& - manzil operatori"]}
+
+,{t:"STL algoritmlar",th:`<p>STL da ko'p tayyor algoritm: <code>find, count, max_element</code>. Vaqtni tejaydi.</p><p><b>Topshiriq:</b> massivda 5 bor-yo'qligini find bilan tekshirib "Bor" chiqaring</p>`,
+ s:T(`    #include <bits/stdc++.h>
+    vector<int> v={1,5,3};
+    // find bilan 5 ni qidiring
+    `),a:T(`    #include <bits/stdc++.h>
+    vector<int> v={1,5,3};
+    auto it = find(v.begin(), v.end(), 5);
+    if(it != v.end()) cout << "Bor" << endl;`),o:"Bor",r:/find/,h:"find(v.begin(), v.end(), 5)",
+ ex:T(`    vector<int> a={1,2,2,3};
+    cout << count(a.begin(), a.end(), 2) << endl;`),exo:"2",exn:`<p>2 soni 2 marta uchraydi.</p>`,
+ m:"STL - tayyor asboblar qutisi! 🔧",q:["find nima qaytaradi?",["iterator","bool","int"],0,"find topilsa iterator, topilmasa end() qaytaradi."]}
+
+,{t:"Loyiha: Kalkulyator",th:`<p>Kalkulyator: ikki son va amal (+ - * /) berilsa natija chiqaradi. if va switch bilan.</p><p><b>Topshiriq:</b> a=6 b=3 amal='*' bo'lsa 18 chiqaring</p>`,
+ s:T(`    int a=6, b=3; char amal='*';
+    // kalkulyator
+    `),a:T(`    int a=6, b=3; char amal='*';
+    if(amal=='+') cout << a+b << endl;
+    else if(amal=='-') cout << a-b << endl;
+    else if(amal=='*') cout << a*b << endl;
+    else if(amal=='/') cout << a/b << endl;`),o:"18",r:/\*/,h:"if(amal=='*') cout << a*b;",
+ ex:T(`    int x=10,y=2; char op='/';
+    if(op=='/') cout << x/y << endl;`),exo:"5",exn:`<p>Bo'lish amali.</p>`,
+ m:"Kalkulyator - birinchi haqiqiy loyihang! 🧮",q:["Kalkulyatorda amalni nima bilan tekshiramiz?",["char","int","string"],0,"Amal belgisi char: '+', '-', '*'"]}
+
+,{t:"Loyiha: Topish o'yini - Final",th:`<p>Yakuniy loyiha: kompyuter 1-10 da son o'ylaydi, foydalanuvchi topadi. while va if bilan. Tasodifiy son uchun <code>rand()%10+1</code>.</p><p><b>Topshiriq:</b> 7 sonini topish o'yini - to'g'ri topilsa "Yutding!"</p>`,
+ s:T(`    int sir=7, taxmin=7;
+    // if bilan tekshiring
+    `),a:T(`    int sir=7, taxmin=7;
+    if(taxmin==sir) cout << "Yutding!" << endl;
+    else cout << "Topolmading" << endl;`),o:"Yutding!",r:/==/,h:"if(taxmin==sir) cout << \"Yutding!\";",
+ ex:T(`    int sir=5;
+    for(int t=1; t<=5; t++){
+        if(t==sir) { cout << "Topildi" << endl; break; }
+    }`),exo:"Topildi",exn:`<p>3 urinishda topish.</p>`,
+ m:"Final! O'yin yasaymiz! Siz yutdingiz! Siz C++ dasturchisiz! 🎉👑",q:["rand() nima uchun?",["tasodifiy son","cout","xato"],0,"rand() tasodifiy son beradi, % bilan oraliqni cheklaymiz."]}
+].concat(window.L2||[]);
+(function(){const all=L.splice(0),by={};all.slice(30).forEach(l=>by[l.k]=l);
+const ORD=[1,2,3,4,5,6,7,'ops',8,13,'elif','nest',14,9,'for2',11,12,'nfor','dig','prime','fact','cin',10,'sidx','sfor','chr','sfun','arr','arrs','mat','vec','fn2','rec','sort',22,27,23,25,28,26,29,30];
+const fi=c=>{if(typeof c!='string')return c;const ix=c.indexOf('int main');if(ix<0)return c;let h=c.slice(0,ix),b=c.slice(ix);const inc=b.match(/^[ \t]*#include[^\n]*\n?/gm);if(!inc)return c;b=b.replace(/^[ \t]*#include[^\n]*\n?/gm,'');return h.replace(/(#include[^\n]*\n)(?![\s\S]*#include)/,'$1'+inc.map(x=>x.trim()+'\n').join(''))+b};
+[22,23,25,26,27,28].forEach(n=>{const l=all[n-1];l.nosim=1;['s','a','ex'].forEach(f=>{if(l[f])l[f]=fi(l[f])})});
+window.MIG={};ORD.forEach((x,i)=>{if(typeof x=="number")window.MIG[x-1]=i;L.push(typeof x=='number'?all[x-1]:by[x])});})();/*END-L*/
+// ROBOT
+const rb=$('#rb'),bb=$('#bb'),eg=$('#rbE'),V=[...rb.querySelectorAll('[data-v]')];
+const CL={happy:'#5dff9d',star:'#ffd84d',wow:'#ffd84d',think:'#ffd84d',sad:'#6a8cff',sleepy:'#4a7fa8',dizzy:'#ff9d4d',love:'#ff7ac8',type:'#39ff14'};
+let m='idle',mt,bt,last=Date.now(),act=Date.now(),lastN=-1;
+const NUD=["Darsni boshlaymizmi? 🤖", "C++ darsi kutyapti, boshlaymizmi? 💡", "Bitta kichik topshiriq qilib ko'ramiz!", "Yaxshi ketyapti, davom etamiz! 🌸", "Bitta qator kod yozsangiz, men quvonib aylanaman! 🤖", "Bugungi bitta dars — ertangi katta yutuq. Davom etamiz! ⭐", "Kod yozishga tayyormisiz? Birga boshlaymiz 😊", "Dars qilish yoqimli, davom etamiz!", "Xato qilsangiz ham mayli, urinib ko'rish muhim! 💡", "Kompilyator tayyor, bitta topshiriq qilamizmi? ✨"];
+
+const nud=()=>{let k;do{k=Math.floor(Math.random()*NUD.length)}while(k==lastN);lastN=k;return NUD[k]};
+function mood(n,ms){m=n;try{acc()}catch(e){}rb.dataset.m=n;V.forEach(g=>g.style.display=g.dataset.v.split(' ').includes(n)?'':'none');clearTimeout(mt);if(ms)mt=setTimeout(()=>mood('idle'),ms)}
+let ac,mute=false;const SQ={ok:[[660,0],[880,.1]],win:[[523,0],[659,.1],[784,.2],[1047,.3]],bad:[[330,0],[247,.14],[196,.28]],hint:[[587,0],[587,.12]],ping:[[740,0],[988,.07]],nudge:[[880,0],[698,.18],[880,.36]],zz:[[196,0],[165,.35]],wob:[[300,0],[220,.08],[300,.16],[220,.24]]},SK={happy:'ok',star:'win',love:'win',sad:'bad',dizzy:'wob',think:'hint',wow:'ping',sleepy:'zz'};
+function snd(k){if(mute||!SQ[k])return;try{ac=ac||new(window.AudioContext||window.webkitAudioContext)();if(ac.state=='suspended')ac.resume();SQ[k].forEach(([f,d])=>{const o=ac.createOscillator(),g=ac.createGain(),t=ac.currentTime+d;o.type=k=='zz'?'triangle':'sine';o.frequency.value=f;o.connect(g);g.connect(ac.destination);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.06,t+.02);g.gain.exponentialRampToValueAtTime(.0001,t+(k=='zz'?.6:.2));o.start(t);o.stop(t+.7)})}catch(e){}}
+const END=[' 🐾',' ✨','',''];
+function say(t,n='happy',ms=6000,k){last=Date.now();const d=n=='type'?ms:Math.min(15000,Math.max(2500,1500+t.length*70));mood(n,d);snd(k||SK[n]);bb.textContent=t;bb.classList.add('s');clearTimeout(bt);bt=setTimeout(()=>bb.classList.remove('s'),d+800)}
+const TIPS=["Kod yozganda qavs va ; ni unutmang!", "Xato qilishdan qo'rqmang, xato eng yaxshi ustoz 💛", "C++ da o'yinlar yoziladi. Siz ham yozasiz! 🎮", "Meni sudrab, xohlagan joyingizga qo'yishingiz mumkin!"];
+mood('idle');
+let dx,dy,dg=0,mv=0;
+addEventListener('pointermove',e=>{if(!eg){window.__ptr=[e.clientX,e.clientY];return}const r=rb.getBoundingClientRect(),x=e.clientX-(r.left+r.width/2),y=e.clientY-(r.top+r.height/2),d=Math.hypot(x,y)||1,k=Math.min(1,d/300);eg.style.transform=`translate(${x/d*k*4}px,${y/d*k*3}px)`},{passive:true});
+const wake=()=>{act=Date.now();if(m=='sleepy')mood('idle')};addEventListener('keydown',wake);addEventListener('pointerdown',wake);addEventListener('scroll',()=>{act=Date.now()},{passive:true});
+setInterval(()=>{const n=Date.now();if(n-act>20000&&n-last>17000){const z=n-act>45000;say(nud(),z?'cry':pick(['grumpy','sad','dizzy']),7000,z?'bad':'nudge')}},5000);
+// PLATFORM
+let S={c:{},q:{},cur:0},cur=0;
+try{S=JSON.parse(localStorage.getItem('cppuz2'))||S}catch(e){}
+try{if(!S.v){const c={},q={},M=window.MIG||{};for(const k in S.c)if(S.c[k]&&M[k]!==undefined)c[M[k]]=1;for(const k in S.q)if(S.q[k]&&M[k]!==undefined)q[M[k]]=1;S={c,q,cur:M[S.cur]??0,v:2};localStorage.setItem('cppuz2',JSON.stringify(S))}}catch(e){}
+const save=()=>{try{localStorage.setItem('cppuz2',JSON.stringify(S))}catch(e){}};
+const done=i=>S.c[i]&&S.q[i],ed=$('#ed'),tm=$('#tm');
+function side(){$('#sb').innerHTML=L.map((l,i)=>`<div class="li ${i==cur?'on':''}" data-i="${i}"><span>${done(i)?'✅':S.c[i]||S.q[i]?'🔸':i+1}</span>${l.t}</div>`).join('');
+ const d=L.filter((_,i)=>done(i)).length;$('#pf').style.width=d/L.length*100+'%';$('#pt').textContent=`${d}/${L.length} dars`}
+function load(i,quiet){cur=i;S.cur=i;save();const l=L[i];$('#ti').textContent=`${i+1}-dars: ${l.t}`;$('#th').innerHTML=l.th+(l.ex?`<div class="exw"><b>📌 Misol:</b><div class="exb">${hl(l.ex)}</div><div><b>Natija:</b> <code>${esc(l.exo)}</code></div>${l.exn}<button class="bt" id="exb">⌨ Misolni muharrirga yozib ko'rsat</button></div>`:'');ed.value=l.s;tm.innerHTML='<span class="p">$</span> Kodni ishga tushiring…';
+ const[q,o,c]=l.q;$('#qz').innerHTML=`<b>${q}</b>`+o.map((x,k)=>`<button class="bt" data-k="${k}">${esc(x)}</button>`).join('');
+ $('#nx').style.display=done(i)&&i<L.length-1?'block':'none';side();if(!quiet)say(l.m,'happy',7000)}
+function chk(){side();if(done(cur)){$('#nx').style.display=cur<L.length-1?'block':'none';say(cur==L.length-1?"Barcha darslar tugadi! Siz haqiqiy C++ dasturchisiz!":"Dars yakunlandi! Keyingisiga o'tamiz.",'love',6000)}}
+$('#sb').onclick=e=>{const d=e.target.closest('.li');if(d)load(+d.dataset.i)};
+$('#nx').onclick=()=>load(cur+1);
+$('#rst').onclick=()=>{ed.value=L[cur].s;say("Kod boshiga qaytdi. Qaytadan urinib ko'ring!",'think',3500)};
+$('#rs').onclick=()=>{S={c:{},q:{},cur:0};save();load(0)};
+ed.addEventListener('input',()=>{typeTogether();});
+
+// === AVTO TO'LDIRISH - co -> cout va h.k ===
+const CPP_KEYWORDS = [
+  {k:'cout', d:'chiqarish', t:'cout <<'},
+  {k:'cin', d:'kiritish', t:'cin >>'},
+  {k:'endl', d:'yangi qator', t:'endl'},
+  {k:'int', d:'butun son', t:'int '},
+  {k:'double', d:'kasr son', t:'double '},
+  {k:'string', d:'matn', t:'string '},
+  {k:'bool', d:'mantiqiy', t:'bool '},
+  {k:'#include', d:'kutubxona', t:'#include <bits/stdc++.h>'},
+  {k:'using namespace std;', d:'std', t:'using namespace std;'},
+  {k:'for', d:'tsikl', t:'for (int i=0; i<n; i++)'},
+  {k:'if', d:'shart', t:'if ()'},
+  {k:'else', d:'aks holda', t:'else'},
+  {k:'while', d:'tsikl', t:'while ()'},
+  {k:'return', d:'qaytarish', t:'return '},
+  {k:'main', d:'asosiy', t:'int main()'},
+  {k:'sqrt', d:'ildiz', t:'sqrt()'},
+  {k:'pow', d:'daraja', t:'pow()'},
+  {k:'abs', d:'modul', t:'abs()'},
+];
+
+const acBox=document.getElementById('acBox');
+let acIndex=0, acList=[], acWord='', acStart=0;
+
+function getCurrentWord(){
+  const pos=ed.selectionStart;
+  const text=ed.value.slice(0,pos);
+  const m=text.match(/([a-zA-Z_#][a-zA-Z0-9_]*)$/);
+  if(!m) return null;
+  return {word:m[1], start:pos-m[1].length, end:pos};
+}
+
+function showAutocomplete(){
+  const cw=getCurrentWord();
+  if(!cw || cw.word.length<1){ acBox.classList.remove('show'); return; }
+  const q=cw.word.toLowerCase();
+  acList=CPP_KEYWORDS.filter(o=>o.k.toLowerCase().startsWith(q) && o.k.toLowerCase()!==q).slice(0,8);
+  if(acList.length===0){ acBox.classList.remove('show'); return; }
+  acWord=cw.word; acStart=cw.start; acIndex=0;
+  acBox.innerHTML=acList.map((o,i)=>`<div class="acItem ${i===0?'on':''}" data-i="${i}"><span>${o.k}</span><small>${o.d}</small></div>`).join('');
+  acBox.classList.add('show');
+}
+
+function hideAutocomplete(){ acBox.classList.remove('show'); }
+
+function applyAutocomplete(i){
+  const item=acList[i]; if(!item) return;
+  const pos=ed.selectionStart;
+  const before=ed.value.slice(0,acStart);
+  const after=ed.value.slice(pos);
+  const insert=item.t || item.k;
+  ed.value=before+insert+after;
+  const newPos=acStart+insert.length;
+  ed.setSelectionRange(newPos,newPos);
+  ed.focus();
+  hideAutocomplete();
+  // trigger highlight
+  if(typeof lv!=='undefined') lv=null;
+}
+
+ed.addEventListener('input', ()=>{ showAutocomplete(); });
+ed.addEventListener('keydown', (e)=>{
+  if(!acBox.classList.contains('show')) return;
+  if(e.key==='ArrowDown'){ e.preventDefault(); acIndex=(acIndex+1)%acList.length; acBox.querySelectorAll('.acItem').forEach((el,j)=>el.classList.toggle('on',j===acIndex)); }
+  else if(e.key==='ArrowUp'){ e.preventDefault(); acIndex=(acIndex-1+acList.length)%acList.length; acBox.querySelectorAll('.acItem').forEach((el,j)=>el.classList.toggle('on',j===acIndex)); }
+  else if(e.key==='Tab' || e.key==='Enter'){ e.preventDefault(); applyAutocomplete(acIndex); }
+  else if(e.key==='Escape'){ hideAutocomplete(); }
+});
+acBox.addEventListener('click', (e)=>{
+  const it=e.target.closest('.acItem'); if(it) applyAutocomplete(+it.dataset.i);
+});
+document.addEventListener('click', (e)=>{ if(!e.target.closest('#acBox') && e.target!==ed) hideAutocomplete(); });
+ed.addEventListener('blur', ()=>{ setTimeout(hideAutocomplete,200); });
+
+$('#run').onclick=()=>{try{ logActivity('code_run', `Dars ${cur+1} - kod ishga tushdi`); }catch(e){}; const l=L[cur];let r=runCpp(ed.value,l.inp);if(l.nosim&&r.e&&l.r&&l.r.test(ed.value))r={o:l.o,sim:1}; countLines();
+ if(r.e){tm.innerHTML=`<span class="er">$ Xato:</span>\n${esc(r.e)}`; try{ logActivity('code_fail', `Dars ${cur+1} xato: ${r.e.slice(0,50)}`); }catch(e){}; return say(RM.err(cur,r.e+hint(r.e)),r.loop?'dizzy':'sad')}
+ const o=r.o;tm.innerHTML=`<span class="p">$ ./dastur</span>\n<span class="r">${r.sim?"[Namunaviy natija: bu mavzuni brauzer simulyatori ishga tushira olmaydi, kod tuzilmasi tekshirildi]\n":''}${esc(o)||"(chiqish yo'q)"}</span>`;
+ if(o.trim().replace(/\s+/g,' ')===l.o&&(!l.r||l.r.test(ed.value))){S.c[cur]=1;save();say(RM.ok(cur)+(S.q[cur]?'':"Endi quizga javob ber — dars hali tugamadi!"),'star');chk()}
+ else say(RM.bad(cur,l.o,l.h),RM.mood(cur),7000)};
+$('#qz').onclick=e=>{const b=e.target.closest('button');if(!b)return;const l=L[cur],ok=+b.dataset.k==l.q[2];b.classList.add(ok?'ok':'no');
+ if(ok){S.q[cur]=1;save();say("To'g'ri! "+l.q[3],'love',5000);chk()}else say(RM.quiz(),'grumpy',3500)};
+const typeIn=a=>{ed.value='';say("Qarang, yozilmoqda…",'type',a.length*22+800);let k=0;const t=setInterval(()=>{ed.value=a.slice(0,++k);if(k>=a.length){clearInterval(t);say("Tayyor! Endi 'Ishga tushirish'ni bosing.",'happy',4500)}},22)};
+$('#demo').onclick=()=>{const g=RM.demo(cur);if(g)say(g,'grumpy',6000);else typeIn(L[cur].a)};$('#th').onclick=e=>{if(e.target.id=='exb')typeIn(L[cur].ex)};$('#mu').onclick=()=>{mute=!mute;$('#mu').textContent=mute?'🔇':'🔊'};
+ed.addEventListener('keydown',e=>{if(e.key=='Tab'){e.preventDefault();const s=ed.selectionStart;ed.setRangeText('    ',s,ed.selectionEnd,'end')}});
+// Sintaksis ranglash
+const hlE=$('#hl'),KW=/^(int|double|float|string|bool|char|void|auto|long|return|if|else|for|while|using|namespace|true|false|cout|cin|endl|std)$/;
+function hl(c){let o='',re=/(\/\/.*)|(#\w+)(.*)|("(?:[^"\\\n]|\\.)*"?)|(\b\d+\.?\d*\b)|(\b[A-Za-z_]\w*\b)|([\s\S])/g,m;
+ while(m=re.exec(c)){if(m[1])o+=`<i class=c>${esc(m[1])}</i>`;else if(m[2])o+=`<i class=k>${esc(m[2])}</i><i class=s>${esc(m[3])}</i>`;else if(m[4])o+=`<i class=s>${esc(m[4])}</i>`;else if(m[5])o+=`<i class=n>${m[5]}</i>`;else if(m[6]){const w=m[6];o+=KW.test(w)?`<i class=k>${w}</i>`:/^\s*\(/.test(c.slice(re.lastIndex))?`<i class=f>${w}</i>`:esc(w)}else o+=esc(m[7])}
+ return o+'\n'}
+let lv=null;setInterval(()=>{if(ed.value!==lv){lv=ed.value;hlE.innerHTML=hl(lv);hlE.scrollTop=ed.scrollTop}},50);ed.addEventListener('scroll',()=>{hlE.scrollTop=ed.scrollTop});
+load(Math.min(S.cur||0,L.length-1),1);setTimeout(()=>say(greet()+L[cur].m,'happy',9000),600);
+
+/* ---- Robot-ustoz: jonlantirish ---- */
+SQ.giggle=[[900,0],[1100,.08],[900,.16],[1250,.24]];SK.cry='bad';SK.shy='giggle';
+const AC=()=>{ac=ac||new(window.AudioContext||window.webkitAudioContext)();if(ac.state=='suspended')ac.resume();return ac};
+function meow(){if(mute)return;try{const a=AC(),t=a.currentTime,o=a.createOscillator(),f=a.createBiquadFilter(),g=a.createGain();o.type='sawtooth';f.type='lowpass';f.frequency.value=1400;o.frequency.setValueAtTime(520,t);o.frequency.linearRampToValueAtTime(900,t+.18);o.frequency.linearRampToValueAtTime(480,t+.55);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(.07,t+.06);g.gain.exponentialRampToValueAtTime(.0001,t+.6);o.connect(f);f.connect(g);g.connect(a.destination);o.start(t);o.stop(t+.65)}catch(e){}}
+function purr(d=1.4){if(mute)return;try{const a=AC(),t=a.currentTime,o=a.createOscillator(),l=a.createOscillator(),g=a.createGain(),lg=a.createGain(),f=a.createBiquadFilter();o.type='sawtooth';o.frequency.value=70;f.type='lowpass';f.frequency.value=300;l.frequency.value=24;lg.gain.value=.03;g.gain.value=.04;l.connect(lg);lg.connect(g.gain);o.connect(f);f.connect(g);g.connect(a.destination);o.start(t);l.start(t);o.stop(t+d);l.stop(t+d)}catch(e){}}
+function speak(t){try{if(mute||!window.speechSynthesis)return;const v=speechSynthesis.getVoices().find(x=>/^uz/i.test(x.lang));if(!v)return;speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t.replace(/[^\p{L}\p{N}\s.,!?']/gu,''));u.voice=v;u.pitch=1.5;speechSynthesis.speak(u)}catch(e){}}
+const J=(k,d)=>{try{return JSON.parse(localStorage[k]||'null')??d}catch(e){return d}},W=(k,v)=>{try{localStorage[k]=JSON.stringify(v)}catch(e){}};
+const getF=()=>{const o=J('catF',{});return Math.max(0,Math.min(100,(o.f??60)-(Date.now()-(o.t||Date.now()))/36e5*6))};
+function feed(v){W('catF',{f:Math.min(100,getF()+v),t:Date.now()});ui()}
+function streak(){const d=new Date().toISOString().slice(0,10);let o=J('catS',{});if(o.d!=d){const y=new Date(Date.now()-864e5).toISOString().slice(0,10);o={d,n:o.d==y?(o.n||0)+1:1};W('catS',o)}return o.n||1}
+const hp=document.createElement('div');hp.style.cssText='font-size:12px;color:var(--yl);display:flex;gap:10px;align-items:center';hp.innerHTML='<span id="sk"></span><span title="Robot quvvati">🔋 <span style="display:inline-block;width:46px;height:7px;background:var(--s3);border-radius:4px;vertical-align:middle;overflow:hidden"><i id="fb" style="display:block;height:100%;background:var(--ac)"></i></span></span>';document.querySelector('header').appendChild(hp);
+function ui(){$('#fb').style.width=getF()+'%';$('#sk').textContent='🔥 '+streak()+' kun'}ui();
+function greet(){const h=new Date().getHours(),n=streak();return (h<11?'Xayrli tong! ':h>=18?'Xayrli kech! ':'')+(n>1?`🔥 Ketma-ket ${n}-kun! `:'')}
+function hint(e){e=String(e).toLowerCase();return /;|nuqtali/.test(e)?" ';' belgisini tekshiring.":/qavs/.test(e)?' Qavslarni tekshiring.':/tirnoq/.test(e)?' Tirnoqni yopdingizmi?':/aniqlanmagan|topilmadi|e.lon/.test(e)?" O'zgaruvchi nomini to'g'ri yozdingizmi?":''}
+const ACC=[[1,'🎀','66%','2%'],[3,'🕶️','50%','36%'],[6,'👑','50%','-12%'],[9,'🎓','50%','-14%']],cnt=()=>{try{return Object.values(S.c||{}).filter(Boolean).length}catch(e){return 0}};
+let lc=cnt();function acc(){try{const c=cnt();rb.dataset.acc=c>=9?4:c>=6?3:c>=3?2:c>=1?1:0}catch(e){}}acc();
+function hearts(n){for(let i=0;i<n;i++){const h=document.createElement('span');h.className='ht';h.textContent=['💛','💖','🌸','✨'][i%4];h.style.setProperty('--dx',(Math.random()*60-30)+'px');h.style.left=(20+Math.random()*50)+'%';rb.appendChild(h);setTimeout(()=>h.remove(),1300)}}
+let er=0,tp=0,tt;const _say=say;
+say=function(t,n,ms,k){n=n||'happy';if(n=='sad'||n=='dizzy'){if(++er>=3){er=0;n='cry';t+=" Xafa bo'lmang, men yordam beraman: «Robot ko'rsatsin» tugmasini bosing ✨"}}else if(n=='star'||n=='love'){er=0;feed(10)}
+ if(n!='type'&&Math.random()<.35)setTimeout(meow,150);_say(t,n,ms,k);speak(t);
+ bpos();
+ if(n=='star')setTimeout(()=>{const c=cnt(),a=ACC.find(x=>x[0]==c);if(a&&c>lc){lc=c;_say("Yangi sovg'a: "+a[1]+" Robot uni taqib oldi!",'love',5000);acc()}},4500)};
+setTimeout(()=>{if(getF()<30)say("Quvvatim kamayyapti... birga dars qilib to'ldiramizmi? 🔋",'sad',6000)},4000);
+/* ---- Robot-ustoz: harakat motori ---- */
+SK.grumpy='bad';SK.play='ping';SK.wave='ok';
+const sl=(ms,g)=>new Promise(r=>setTimeout(()=>r(g==gen),ms)),fr=()=>new Promise(r=>requestAnimationFrame(r)),cl=(v,a,b)=>Math.max(a,Math.min(b,v));
+const G=2300,fc=$('.fc'),CW=()=>rb.offsetWidth,FT=()=>CW()*.92,floorY=()=>innerHeight-FT()-14;
+let X=0,Y=0,face=1,gnd=null,gen=0,air=0,hold=0,busy=0,ph,tapN=0,tapT,holdT,sx,sy;
+const put=()=>{rb.style.left=X+'px';rb.style.top=Y+'px';if(bb.classList.contains('s'))bpos()};
+const setFace=f=>{face=f};window.__face=()=>face;
+function bpos(){const w=bb.offsetWidth,c=X+CW()/2;bb.style.setProperty('--bx',(cl(c-w/2,8,innerWidth-w-8)-(c-w/2))+'px');bb.classList.toggle('dn',Y<bb.offsetHeight+24)}
+async function anim(dur,fn,g){const s=performance.now();for(;;){await fr();if(g!=gen)return 0;const t=(performance.now()-s)/1000;if(fn(t)===false||t*1000>=dur)return 1}}
+const ledges=()=>[...document.querySelectorAll('.card,.li,aside,.bt,.exb')].map(el=>({el,r:el.getBoundingClientRect()})).filter(o=>o.r.width>60&&o.r.top>CW()*.3&&o.r.top<innerHeight-60&&o.r.left>=-5&&o.r.right<=innerWidth+5&&getComputedStyle(o.el).display!='none');
+const endAir=()=>{air=0;rb.classList.remove('ar','cr');rb.classList.add('ld');setTimeout(()=>rb.classList.remove('ld'),400);put()};
+function settle(){if(gnd||Y>=floorY()-2){if(!gnd)Y=floorY();endAir()}else fall(++gen)}
+async function walkTo(tx,g,free){const c=gnd&&!free?gnd.r:{left:0,right:innerWidth};if(!free)tx=cl(tx,c.left+8,c.right-8);const f=tx>X+CW()/2?1:-1,x0=X,sp=cl(innerWidth/8,80,140);setFace(f);if(free)air=1;rb.classList.add('wk');
+ const ok=await anim(2e4,t=>{X=x0+f*sp*t;put();if(f>0?X+CW()/2>=tx:X+CW()/2<=tx)return false},g);rb.classList.remove('wk');return ok}
+function targets(){const cx=X+CW()/2,o=[];ledges().forEach(l=>{if(gnd&&l.el===gnd.el)return;const ty=l.r.top-FT()+3,x=cl(cx,l.r.left+20,l.r.right-20),dy=ty-Y;if(Math.abs(x-cx)<460&&dy>-300&&dy<420)o.push({gnd:l,x:cl(x+Math.random()*80-40,l.r.left+20,l.r.right-20),y:ty})});if(gnd)o.push({gnd:null,x:cl(cx+Math.random()*400-200,CW(),innerWidth-CW()),y:floorY()});return o}
+async function jump(T,g){air=1;gnd=null;setFace(T.x>X+CW()/2?1:-1);rb.classList.add('cr');if(!await sl(300,g))return;rb.classList.replace('cr','ar');snd('ping');
+ const x0=X,y0=Y,x1=T.x-CW()/2,y1=T.y,D=.55+Math.hypot(x1-x0,y1-y0)/1600,v=(y1-y0-.5*G*D*D)/D;
+ if(!await anim(D*1000,t=>{const u=Math.min(t,D);X=x0+(x1-x0)*u/D;Y=y0+v*u+.5*G*u*u;put()},g))return;X=x1;Y=y1;gnd=T.gnd;endAir()}
+async function fall(g,vx=0){air=1;gnd=null;rb.classList.remove('wk','cr');rb.classList.add('ar');mood('wow',1300);const L=ledges(),x0=X,y0=Y;let hit=null;
+ const ok=await anim(4e3,t=>{const py=Y,nx=cl(x0+vx*t,0,innerWidth-CW()),ny=y0+.5*G*t*t,c=nx+CW()/2;
+  for(const l of L){const ty=l.r.top-FT()+3;if(ty>=py-1&&ty<=ny&&c>l.r.left+8&&c<l.r.right-8&&(!hit||ty<hit.y))hit={l,y:ty}}
+  X=nx;Y=ny;if(hit){Y=hit.y;put();return false}if(Y>=floorY()){Y=floorY();put();return false}put()},g);
+ if(!ok)return;gnd=hit?hit.l:null;endAir();
+ if(Y-y0>170){mood('dizzy',1500);snd('wob');if(!await sl(1500,g))return;mood('grumpy',1800)}}
+async function tumble(g){if(!gnd)return;const r=gnd.r,s=Math.random()<.5?-1:1;if(!await walkTo(s>0?r.right-3:r.left+3,g,1))return;await fall(g,s*70)}
+async function sulk(){const g=++gen;busy=1;say(pick(["Biroz dam olaman, keyin davom etamiz 😌","Ozgina chetga chiqib turaman..."]),'grumpy',4500);const c=gnd?gnd.r:{left:0,right:innerWidth},mid=(c.left+c.right)/2;
+ await walkTo(X+CW()/2<mid?c.right-40:c.left+40,g);if(g==gen){mood('sad',4000);await sl(4200,g)}busy=0;if(g==gen)settle()}
+function tap(){clearTimeout(tapT);tapT=setTimeout(()=>tapN=0,1300);tapN++;hearts(3);rb.classList.add('ld');setTimeout(()=>rb.classList.remove('ld'),400);
+ if(tapN>=5){tapN=0;sulk()}else if(tapN>=3)say(pick(["Sekinroq, iltimos!","Hmm... qitiqlamang!"]),'grumpy',2500);else if(tapN==2)say('Hihihi, qitiqladi!','shy',2500,'giggle');else{mood('play',1800);purr(.8);if(Math.random()<.4)say(pick(TIPS),'play',3500)}}
+const stopHold=()=>{clearTimeout(holdT);clearInterval(ph)};
+rb.onpointerdown=e=>{gen++;stopHold();rb.classList.remove('wk','cr','ar','ld');air=0;dg=1;mv=0;hold=0;sx=e.clientX;sy=e.clientY;const r=rb.getBoundingClientRect();dx=e.clientX-r.left;dy=e.clientY-r.top;rb.setPointerCapture(e.pointerId);last=Date.now();
+ holdT=setTimeout(()=>{hold=1;mood('love');purr(2);hearts(3);ph=setInterval(()=>{hearts(2);purr(1)},1100)},520)};
+rb.onpointermove=e=>{if(!dg)return;if(!mv){if(Math.hypot(e.clientX-sx,e.clientY-sy)<8)return;mv=1;stopHold();hold=0;gnd=null;air=1;rb.classList.add('hd');mood('wow')}X=cl(e.clientX-dx,0,innerWidth-CW());Y=cl(e.clientY-dy,0,innerHeight-CW());put()};
+rb.onpointerup=()=>{if(!dg)return;dg=0;stopHold();rb.classList.remove('hd');if(mv)fall(++gen);else{if(hold)mood('love',1800);else tap();settle()}};
+(function tick(){if(!air&&!dg){if(gnd){if(!document.contains(gnd.el))fall(++gen);else{const r=gnd.el.getBoundingClientRect();if(r.top<8||r.top>innerHeight-50)fall(++gen);else{gnd.r=r;Y=r.top-FT()+3;X=cl(X,r.left+8-CW()/2,r.right-8-CW()/2);put()}}}else if(Y!=floorY()){Y=floorY();put()}}requestAnimationFrame(tick)})();
+addEventListener('resize',()=>{X=cl(X,0,innerWidth-CW());if(!gnd&&!air)Y=floorY();put()});
+X=innerWidth-CW()-14;Y=floorY();put();
+
+async function climbTo(T,g){
+  air=1; gnd=null;
+  const dir = T.x > X+CW()/2 ? 1 : -1;
+  setFace(dir);
+  rb.classList.add('climb');
+  snd('ping');
+  const x0=X, y0=Y, x1=T.x-CW()/2, y1=T.y;
+  const D = .65 + Math.hypot(x1-x0, y1-y0)/1200;
+  const v = (y1-y0 - .5*G*D*D)/D;
+  // tirmashish efekti - sekin tepaga
+  const ok = await anim(D*1000, t=>{
+    const u=Math.min(t/D,1);
+    const eased = 1-Math.pow(1-u,2); // easeOut
+    X=x0+(x1-x0)*eased;
+    Y=y0+v*u*D + .5*G*D*D*u*u*.6;
+    // tirmashayotganda titrash
+    if(u>.7) Y += Math.sin(u*30)*2;
+    put();
+  }, g);
+  rb.classList.remove('climb');
+  if(ok){ X=x1; Y=y1; gnd=T.gnd; endAir(); }
+}
+
+async function slideBackDown(g){
+  if(!gnd) return;
+  const r=gnd.r;
+  rb.classList.add('slide');
+  mood('wow',1500);
+  // orqamachoq - yuzini teskari emas, tanani orqaga
+  const startX = X;
+  const endX = X + (Math.random()<.5 ? 40 : -40);
+  await anim(600, t=>{
+    const u=t/600;
+    X = startX + (endX-startX)*u;
+    Y += 2*Math.sin(u*12); // sirpanish
+    put();
+  }, g);
+  rb.classList.remove('slide');
+  await fall(g, (endX-startX)*.3);
+}
+
+async function walkPatrol(g){
+  const c = gnd ? gnd.r : {left:0,right:innerWidth};
+  const leftEdge = c.left+12;
+  const rightEdge = c.right-CW()-12;
+  // chapga 4 oyoqlab
+  setFace(-1);
+  rb.classList.add('wk');
+  await walkTo(leftEdge + Math.random()*20, g);
+  await sl(200,g);
+  // o'ngga 4 oyoqlab
+  setFace(1);
+  await walkTo(rightEdge - Math.random()*20, g);
+  rb.classList.remove('wk');
+}
+
+
+// === BARCHA YANGI HARAKAT FUNKSIYALARI ===
+async function runTo(tx,g){
+  const c=gnd&&!true?gnd.r:{left:0,right:innerWidth};
+  tx=cl(tx,c.left+8,c.right-CW()-8);
+  const dir=tx>X+CW()/2?1:-1;
+  setFace(dir);
+  rb.classList.add('run');
+  const x0=X, sp=cl(innerWidth/4,180,320);
+  const ok=await anim(3000,t=>{X=x0+dir*sp*t/1000;put();if(dir>0?X+CW()/2>=tx:X+CW()/2<=tx)return false},g);
+  rb.classList.remove('run');
+  return ok;
+}
+async function sneakTo(tx,g){
+  rb.classList.add('sneak');
+  const ok=await walkTo(tx,g);
+  rb.classList.remove('sneak');
+  return ok;
+}
+async function sitDown(g){
+  rb.classList.add('sit');
+  mood('happy',2000);
+  await sl(2000,g);
+  rb.classList.remove('sit');
+}
+async function lieDown(g){
+  rb.classList.add('lie');
+  mood('sleepy',3000);
+  snd('zz');
+  await sl(3000,g);
+  rb.classList.remove('lie');
+  mood('wow',800);
+}
+async function doStretch(g){
+  rb.classList.add('stretch');
+  mood('yawn',1200);
+  await sl(1200,g);
+  rb.classList.remove('stretch');
+}
+async function scratchWall(g){
+  // devorga tirmashish imitasyonu
+  const walls = ledges().filter(l=>l.r.left<10 || l.r.right>innerWidth-10);
+  if(walls.length){await climbTo(walls[0],g);}
+  rb.classList.add('scratch');
+  mood('play',1500);
+  await sl(1500,g);
+  rb.classList.remove('scratch');
+}
+async function pounceTo(tx,g){
+  rb.classList.add('pounce');
+  await sl(250,g);
+  const T={x:tx,y:floorY(),gnd:null};
+  await jump(T,g);
+  rb.classList.remove('pounce');
+  // yerga tushganda chang
+  hearts(2);
+}
+async function doKnead(g){
+  rb.classList.add('knead');
+  mood('love',2000);
+  purr(2);
+  hearts(4);
+  await sl(2200,g);
+  rb.classList.remove('knead');
+}
+async function headbutt(g){
+  const cx=innerWidth/2;
+  await walkTo(cx,g);
+  rb.classList.add('ld');
+  mood('love',1500);
+  hearts(5);
+  await sl(600,g);
+  rb.classList.remove('ld');
+}
+async function hideInBox(g){
+  const boxes=document.querySelectorAll('.card');
+  if(!boxes.length) return;
+  const box=pick([...boxes]);
+  const r=box.getBoundingClientRect();
+  await walkTo(r.left+20,g);
+  // quti ichiga yashirinish
+  rb.style.transition='opacity .4s, transform .4s';
+  rb.style.opacity='0';
+  rb.style.transform='scale(.3)';
+  await sl(1500,g);
+  rb.style.opacity='1';
+  rb.style.transform='scale(1)';
+  mood('play',1500);
+}
+
+// Butterfly
+const bf=document.getElementById('butterfly');
+let bfX=0,bfY=0,bfActive=false;
+async function catchButterfly(g){
+  bfActive=true;
+  bf.style.display='block';
+  bfX=Math.random()*(innerWidth-100)+50;
+  bfY=Math.random()*(innerHeight-200)+50;
+  bf.style.left=bfX+'px'; bf.style.top=bfY+'px';
+  mood('play',5000);
+  for(let i=0;i<8;i++){
+    if(g!=gen||!bfActive) break;
+    const nx=cl(bfX+(Math.random()-.5)*120,20,innerWidth-40);
+    const ny=cl(bfY+(Math.random()-.5)*80,20,innerHeight-100);
+    bfX=nx; bfY=ny;
+    bf.style.left=bfX+'px'; bf.style.top=bfY+'px';
+    await walkTo(bfX,g);
+    await sl(300,g);
+    if(Math.hypot(X+CW()/2-bfX, Y+20-bfY)<60){
+      // tutdi!
+      bf.style.display='none';
+      bfActive=false;
+      say("Kapalakni tutdim! 🦋",'star',3000);
+      hearts(6);
+      break;
+    }
+  }
+  bf.style.display='none';
+  bfActive=false;
+}
+
+// Yarn
+const yarn=document.getElementById('yarn');
+async function playWithYarn(g){
+  yarn.style.display='block';
+  const startX=X+CW()/2;
+  const startY=Y+30;
+  let len=0;
+  mood('play',4000);
+  for(let i=0;i<15;i++){
+    if(g!=gen) break;
+    len+=30;
+    const ang=Math.sin(i*0.8)*30;
+    yarn.style.left=startX+'px';
+    yarn.style.top=startY+'px';
+    yarn.style.width=len+'px';
+    yarn.style.transform=`rotate(${ang}deg)`;
+    setFace(len>0?1:-1);
+    await sl(200,g);
+    if(i%3==0){
+      rb.classList.add('pounce');
+      await sl(200,g);
+      rb.classList.remove('pounce');
+    }
+  }
+  yarn.style.display='none';
+}
+
+// Celebrate & Confused
+function celebrateOnSuccess(){
+  rb.classList.add('celebrate');
+  say("Barakalla! Zo'r chiqdi! 🎉",'star',4000);
+  // konfetti
+  for(let i=0;i<20;i++){
+    const c=document.createElement('div');
+    c.className='confetti';
+    c.textContent=pick(['🎉','✨','⭐','💛','🎊']);
+    c.style.left=(X+Math.random()*CW())+'px';
+    c.style.top=(Y-20)+'px';
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),1500);
+  }
+  hearts(8);
+  setTimeout(()=>rb.classList.remove('celebrate'),3000);
+}
+function confusedOnError(msg){
+  rb.classList.add('confused');
+  say(""+msg+" 🤔 Qayta ko'rib chiqamiz!",'think',5000);
+  setTimeout(()=>rb.classList.remove('confused'),2000);
+}
+async function bringHint(text,g){
+  // og'zida qog'oz olib kelish
+  await runTo(innerWidth/2,g);
+  say("Maslahat: "+text+" 💡",'think',6000);
+  hearts(2);
+}
+let lastType=0;
+function typeTogether(){
+  const now=Date.now();
+  if(now-lastType>1000){
+    rb.classList.add('knead');
+    setTimeout(()=>rb.classList.remove('knead'),400);
+    lastType=now;
+  }
+}
+function countLines(){
+  const lines=ed.value.split('\n').length;
+  if(lines>10){
+    say(`${lines} qator kod yozdingiz! Ajoyib!`,'happy',3000);
+  }
+}
+
+
+const POOL=[];
+[[2,async g=>{mood('wave',2400);await sl(2500,g)}],
+ [2,async g=>{mood('wow',1800);await sl(1900,g)}],
+ [1,async g=>{mood('curious',2400);await sl(2500,g)}],
+ [1,async g=>{mood('groom',2800);purr(1.2);await sl(2900,g)}],
+ [1,async g=>{mood('play',2600);await sl(2700,g)}],
+ [1,async g=>{mood('yawn',1500);if(!await sl(1600,g))return;mood('sleepy',6000);snd('zz');if(await sl(6200,g)&&m=='sleepy'){mood('wow',900);await sl(900,g)}}],
+ [3,async g=>{await walkPatrol(g)}],
+ [2,async g=>{await runTo(Math.random()*(innerWidth-CW()),g)}],
+ [2,async g=>{await sneakTo(Math.random()*(innerWidth-CW()),g)}],
+ [2,async g=>{await sitDown(g)}],
+ [1,async g=>{await lieDown(g)}],
+ [1,async g=>{await doStretch(g)}],
+ [1,async g=>{await scratchWall(g)}],
+ [2,async g=>{await pounceTo(Math.random()*innerWidth,g)}],
+ [2,async g=>{await doKnead(g)}],
+ [1,async g=>{await headbutt(g)}],
+ [1,async g=>{await hideInBox(g)}],
+ [2,async g=>{await catchButterfly(g)}],
+ [2,async g=>{await playWithYarn(g)}],
+ [2,async g=>{const T=targets().filter(t=>t.y < Y-20); if(T.length) await climbTo(pick(T),g); else {const T2=targets(); if(T2.length) await jump(pick(T2),g)}}],
+ [2,async g=>{const T=targets().filter(t=>t.y > Y+40); if(T.length) await jump(pick(T),g)}],
+ [2,slideBackDown],
+ [1,tumble]
+].forEach(([w,f])=>{for(let i=0;i<w;i++)POOL.push(f)});
+(async function life(){for(;;){await new Promise(r=>setTimeout(r,2200+Math.random()*3000));if(dg||busy||m!='idle'||Date.now()-last<3000||document.hidden)continue;busy=1;const g=++gen;try{await pick(POOL)(g)}catch(e){}busy=0;if(g==gen)settle()}})();
+</script><script>
+// === SOZLAMALAR LOGIC - HAMMA FUNKSIYANI YOQISH/O'CHIRISH ===
+const SETTINGS_KEY='cppuz_settings_v2';
+const defaultSettings={
+  notif:true, vibrate:true, sound:true, walkingCat:true, floatingCat:false,
+  bgMusic:false, talkingCat:true, shakeHint:true, voiceCode:false,
+  lessonLock:false, dailyReport:false, autoIcon:true, darkMode:true,
+  selectedIcon:'icon1_angry.png'
+};
+let SETTINGS={...defaultSettings};
+try{ SETTINGS={...defaultSettings, ...JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}')} }catch(e){}
+
+function saveSettings(){ localStorage.setItem(SETTINGS_KEY, JSON.stringify(SETTINGS)); }
+
+function applySettings(){
+  // walking cat
+  const rb=document.getElementById('rb');
+  if(rb) rb.style.display = SETTINGS.walkingCat ? '' : 'none';
+  // sound
+  window.mute = !SETTINGS.sound;
+  // floating cat
+  const fc=document.getElementById('floatingCat');
+  if(fc) fc.classList.toggle('show', SETTINGS.floatingCat);
+  // bg music handled elsewhere
+  // icon
+  const iconPath='./icons/'+SETTINGS.selectedIcon;
+  const mainIcon=document.querySelector('link[rel="icon"]')||document.createElement('link');
+  mainIcon.rel='icon'; mainIcon.href=iconPath; document.head.appendChild(mainIcon);
+  const fci=document.getElementById('floatingCatImg');
+  if(fci) fci.src=iconPath;
+  // update switches UI
+  document.querySelectorAll('.switch[data-key]').forEach(sw=>{
+    const k=sw.dataset.key;
+    sw.classList.toggle('on', !!SETTINGS[k]);
+  });
+}
+
+function initIconGrid(){
+  const grid=document.getElementById('iconGrid');
+  if(!grid) return;
+  const icons=[
+    'icon1_angry.png','icon2_anime_girl.png','icon3_bigeyes.png','icon4_yellow_eyes.png','icon5_gaming.png',
+    'icon6_chibi_girl.png','icon7_neon.png','icon8_blue.png','icon9_cyan_heart.png','icon10_jump.png',
+    'icon11_boom.png','icon12_imok.png','icon13_no.png','icon14_run.png'
+  ];
+  const angrySet=['icon1_angry.png','icon4_yellow_eyes.png','icon7_neon.png','icon9_cyan_heart.png','icon10_jump.png'];
+  const lazySet=['icon11_boom.png','icon12_imok.png','icon13_no.png','icon14_run.png'];
+  grid.innerHTML=icons.map(name=>{
+    const isAngry=angrySet.includes(name);
+    const isLazy=lazySet.includes(name);
+    let title=''; if(isAngry) title='12 soat dars qilmasa'; if(isLazy) title='2-3 kun dars qilmasa har 6 soatda';
+    return `<div class="iconOpt ${SETTINGS.selectedIcon===name?'selected':''} ${isAngry?'angryIcon':''} ${isLazy?'lazyIcon':''}" data-icon="${name}" title="${title}"><img src="./icons/${name}" loading="lazy"><small style="display:none">${name}</small></div>`;
+  }).join('');
+  grid.querySelectorAll('.iconOpt').forEach(el=>{
+    el.addEventListener('click',()=>{
+      SETTINGS.selectedIcon=el.dataset.icon;
+      saveSettings(); applySettings(); initIconGrid();
+      say("Ikonka o'zgardi! 😻",'happy',3000);
+      // For Android, notify
+      if(window.AndroidInterface && window.AndroidInterface.changeIcon){
+        window.AndroidInterface.changeIcon(el.dataset.icon);
+      }
+    });
+  });
+}
+
+// Auto icon change when idle >12h
+const PREV_ACTIVE=parseInt(localStorage.getItem('lastActive')||String(Date.now()));
+let firstChecked=false;
+function touchActive(){ if(firstChecked){ try{localStorage.setItem('lastActive',Date.now())}catch(e){} } }
+['pointerdown','keydown'].forEach(ev=>addEventListener(ev,touchActive,{passive:true}));
+document.addEventListener('visibilitychange',()=>{ if(document.hidden){ try{localStorage.setItem('lastActive',Date.now())}catch(e){} } });
+function checkAutoIcon(){
+  if(!SETTINGS.autoIcon) return;
+  const last=firstChecked?parseInt(localStorage.getItem('lastActive')||String(Date.now())):PREV_ACTIVE;
+  if(!firstChecked){ firstChecked=true; try{localStorage.setItem('lastActive',Date.now())}catch(e){} }
+  const idle=Date.now()-last;
+  const twelveHours=12*3600000;
+  const twoDays=48*3600000;
+  
+  if(idle>=twelveHours && idle<twoDays){
+    const angryIcons=['icon1_angry.png','icon4_yellow_eyes.png','icon7_neon.png','icon9_cyan_heart.png','icon10_jump.png'];
+    const lastChange=parseInt(localStorage.getItem('last_icon_change')||'0');
+    if(Date.now()-lastChange>21600000 || lastChange===0){
+      const randomAngry=angryIcons[Math.floor(Math.random()*angryIcons.length)];
+      SETTINGS.selectedIcon=randomAngry;
+      saveSettings(); applySettings();
+      localStorage.setItem('last_icon_change', Date.now().toString());
+      say("Bir muddat dars bo'lmadi. Qaytib kelganingizdan xursandman! 🤖",'grumpy',6000);
+      if(window.AndroidInterface && window.AndroidInterface.changeIcon){
+        window.AndroidInterface.changeIcon(randomAngry);
+      }
+    }
+  } else if(idle>=twoDays){
+    const lazyIcons=['icon11_boom.png','icon12_imok.png','icon13_no.png','icon14_run.png'];
+    const sixHourBlocks=Math.floor(idle/21600000);
+    const iconIndex=sixHourBlocks % lazyIcons.length;
+    const newIcon=lazyIcons[iconIndex];
+    const lastChange=parseInt(localStorage.getItem('last_lazy_icon_change')||'0');
+    if(newIcon!==SETTINGS.selectedIcon || Date.now()-lastChange>21600000){
+      SETTINGS.selectedIcon=newIcon;
+      saveSettings(); applySettings();
+      localStorage.setItem('last_lazy_icon_change', Date.now().toString());
+      const msgs={
+        'icon11_boom.png': "BOOM! Bir necha kun dars bo'lmadi. Qaytamizmi? 💥",
+        'icon12_imok.png': "Sizni sog'indim! Bir necha kun dars bo'lmadi 😟",
+        'icon13_no.png': "Davom etaylik, bugun bitta dars yetadi! 💪",
+        'icon14_run.png': "Robot sizni kutyapti! Bitta darsdan boshlaymiz 🏃"
+      };
+      say(msgs[newIcon]||"Bir necha kundan beri dars bo'lmadi. Qaytamizmi? 🤖",'grumpy',7000);
+      if(TG_CHAT_ID){
+        try{ sendToTelegram(`⚠️ *2-3 kun dars qilinmadi!* 🕐 ${new Date().toLocaleString('uz-UZ')} 🎨 ${newIcon} ${msgs[newIcon]}`); }catch(e){}
+      }
+      if(window.AndroidInterface && window.AndroidInterface.changeIcon){
+        window.AndroidInterface.changeIcon(newIcon);
+      }
+    }
+  }
+}
+setInterval(checkAutoIcon, 600000); // har 10 daqiqa tekshirish
+setTimeout(checkAutoIcon, 5000);
+
+// Settings UI events
+document.getElementById('settingsBtn').addEventListener('click',()=>{
+  document.getElementById('settingsPanel').classList.add('open');
+  initIconGrid();
+});
+function closeSettings(){ document.getElementById('settingsPanel').classList.remove('open'); }
+document.getElementById('settingsPanel').addEventListener('click',(e)=>{ if(e.target.id==='settingsPanel') closeSettings(); });
+
+document.querySelectorAll('.switch[data-key]').forEach(sw=>{
+  sw.addEventListener('click',()=>{
+    const k=sw.dataset.key;
+    SETTINGS[k]=!SETTINGS[k];
+    saveSettings(); applySettings();
+    if(k==='floatingCat' && SETTINGS[k]){
+      say("Suzuvchi robot yoqildi! 👻",'happy',4000);
+    }
+  });
+});
+
+function resetAllSettings(){
+  SETTINGS={...defaultSettings};
+  saveSettings(); applySettings(); initIconGrid();
+  say("Sozlamalar tiklandi!",'happy',3000);
+}
+
+// === VIBRATSIYA ===
+function vibrate(pattern){
+  if(!SETTINGS.vibrate) return;
+  try{
+    if(navigator.vibrate) navigator.vibrate(pattern);
+    if(window.AndroidInterface && window.AndroidInterface.vibrate){
+      window.AndroidInterface.vibrate(JSON.stringify(pattern));
+    }
+  }catch(e){}
+}
+const oldSayForVibrate = window.say;
+if(typeof say!=='undefined'){
+  const origSay = say;
+  window.say = function(t,n,ms,k){
+    if(n==='sad' || n==='dizzy' || n==='grumpy') vibrate([100,50,100]);
+    if(n==='star' || n==='love') vibrate([50,30,50,30,100]);
+    return origSay(t,n,ms,k);
+  }
+}
+
+// === GAPIRADIGAN MUSHUK ===
+function speakCode(text){
+  if(!SETTINGS.talkingCat) return;
+  try{
+    if('speechSynthesis' in window){
+      const u=new SpeechSynthesisUtterance(text.replace('cout','si aut').replace('<<','chapga').replace('>>',"o'ngga"));
+      u.lang='uz-UZ'; u.pitch=1.4; u.rate=0.9;
+      speechSynthesis.speak(u);
+    }
+  }catch(e){}
+}
+
+// === SILKITSANG MASLAHAT ===
+if('DeviceMotionEvent' in window){
+  let lastShake=0;
+  window.addEventListener('devicemotion', (e)=>{
+    if(!SETTINGS.shakeHint) return;
+    const acc=e.accelerationIncludingGravity;
+    if(!acc) return;
+    const force=Math.abs(acc.x)+Math.abs(acc.y)+Math.abs(acc.z);
+    if(force>35 && Date.now()-lastShake>3000){
+      lastShake=Date.now();
+      vibrate([50,50,50]);
+      say(getLazyPhrase ? getLazyPhrase() : "Silkitding! Maslahat: "+ (typeof L!=='undefined' && L[cur] ? L[cur].h : "cout ishlat!"), 'think',5000);
+    }
+  });
+}
+
+// === OVOZ BILAN KOD YOZISH ===
+let recognition=null;
+function toggleVoiceCode(){
+  if(!SETTINGS.voiceCode){
+    if(recognition) recognition.stop();
+    return;
+  }
+  try{
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    if(!SR){ say("Ovoz bilan yozish bu telefonda yo'q", 'sad',4000); return; }
+    recognition=new SR();
+    recognition.lang='en-US';
+    recognition.continuous=true;
+    recognition.onresult=(e)=>{
+      const transcript=e.results[e.results.length-1][0].transcript.toLowerCase();
+      let code="";
+      if(transcript.includes('cout')) code="cout << ";
+      else if(transcript.includes('cin')) code="cin >> ";
+      else if(transcript.includes('int')) code="int ";
+      else if(transcript.includes('for loop')) code="for (int i=0; i<n; i++) {}";
+      else code=transcript;
+      const ed=document.getElementById('ed');
+      if(ed){ const pos=ed.selectionStart; ed.value=ed.value.slice(0,pos)+code+ed.value.slice(pos); ed.selectionStart=ed.selectionEnd=pos+code.length; ed.focus(); }
+    };
+    recognition.start();
+    say("Ovoz bilan yozish yoqildi! 'cout' deb ayting!",'happy',4000);
+  }catch(e){}
+}
+
+// === FLOATING MUSHUK DRAG ===
+(function(){
+  const fc=document.getElementById('floatingCat');
+  if(!fc) return;
+  let sx,sy,ox,oy,drag=false;
+  fc.addEventListener('pointerdown',(e)=>{
+    drag=true; sx=e.clientX; sy=e.clientY;
+    const r=fc.getBoundingClientRect(); ox=r.left; oy=r.top;
+    fc.setPointerCapture(e.pointerId);
+  });
+  fc.addEventListener('pointermove',(e)=>{
+    if(!drag) return;
+    fc.style.left=(ox+e.clientX-sx)+'px';
+    fc.style.top=(oy+e.clientY-sy)+'px';
+    fc.style.right='auto';
+  });
+  fc.addEventListener('pointerup',()=>{ drag=false; });
+  fc.addEventListener('click',()=>{
+    if(!drag) say(getPositivePhrase ? getPositivePhrase() : "Salom! Men shu yerdaman 🤖", 'happy',3000);
+  });
+})();
+
+// === FON MUSIQASI ===
+let bgAudio=null;
+function toggleBgMusic(){
+  if(!SETTINGS.bgMusic){
+    if(bgAudio){ bgAudio.pause(); bgAudio=null; }
+    return;
+  }
+  try{
+    bgAudio=new Audio('data:audio/wav;base64,UklGRigAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQQAAAAAAA==');
+    // Placeholder - lo-fi loop would be loaded here
+    // For now just purr sound loop
+    bgAudio.loop=true;
+    bgAudio.volume=0.2;
+  }catch(e){}
+}
+
+// === KODNI SAQLASH / ULASHISH / SCREENSHOT ===
+function saveCodeFile(){
+  const ed=document.getElementById('ed');
+  const code=ed ? ed.value : '';
+  const blob=new Blob([code], {type:'text/x-c++src'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url; a.download='kamola_'+Date.now()+'.cpp'; a.click();
+  URL.revokeObjectURL(url);
+  say("Kod .cpp faylga saqlandi! 💾",'happy',3000);
+}
+
+function shareCode(){
+  const ed=document.getElementById('ed');
+  const code=ed ? ed.value : '';
+  if(navigator.share){
+    navigator.share({title:'Kamola C++ kodi', text:code}).catch(()=>{});
+  } else {
+    navigator.clipboard.writeText(code).then(()=>{ say("Kod nusxalandi, Telegram ga jo'nat! 📤",'happy',3000); });
+  }
+  if(window.AndroidInterface && window.AndroidInterface.shareCode){
+    window.AndroidInterface.shareCode(code);
+  }
+}
+
+function takeScreenshot(){
+  // Use html2canvas-like simple method - create canvas from result
+  const tm=document.getElementById('tm');
+  if(!tm) return;
+  const text=tm.innerText;
+  const canvas=document.createElement('canvas');
+  canvas.width=800; canvas.height=400;
+  const ctx=canvas.getContext('2d');
+  ctx.fillStyle='#0a0e1a'; ctx.fillRect(0,0,800,400);
+  ctx.fillStyle='#00e5a0'; ctx.font='18px monospace';
+  ctx.fillText(text.slice(0,200), 20, 40);
+  const url=canvas.toDataURL();
+  const a=document.createElement('a'); a.href=url; a.download='cppuz_natija.png'; a.click();
+  say("Natija rasmga olindi! 📸",'happy',3000);
+}
+
+function createWallpaper(){
+  const canvas=document.createElement('canvas');
+  canvas.width=1080; canvas.height=1920;
+  const ctx=canvas.getContext('2d');
+  ctx.fillStyle='#0a0e1a'; ctx.fillRect(0,0,1080,1920);
+  ctx.fillStyle='#00e5a0'; ctx.font='bold 80px sans-serif'; ctx.textAlign='center';
+  ctx.fillText('Kamola', 540, 800);
+  ctx.fillStyle='#e2e8f0'; ctx.font='40px sans-serif';
+  ctx.fillText('C++ Developer', 540, 870);
+  ctx.font='100px sans-serif'; ctx.fillText('🤖', 540, 1000);
+  const url=canvas.toDataURL();
+  const a=document.createElement('a'); a.href=url; a.download='kamola_wallpaper.png'; a.click();
+  say("Wallpaper yaratildi! 🎨",'happy',3000);
+}
+
+// Init
+setTimeout(()=>{ applySettings(); initIconGrid(); }, 500);
+</script><script>
+// === TELEGRAM NAZORAT - TELEFON O'ZI SERVER ===
+const TG_BOT_TOKEN = "__TG_BOT_TOKEN__";
+let TG_CHAT_ID = localStorage.getItem('tg_chat_id') || ""; // akajonim uchun
+const TG_API = `https://api.telegram.org/bot${TG_BOT_TOKEN}`;
+const TG_LOG_KEY = 'cppuz_tg_logs';
+const TG_STATS_KEY = 'cppuz_tg_stats';
+
+function getDeviceInfo(){
+  return {
+    model: navigator.userAgent,
+    platform: navigator.platform,
+    lang: navigator.language,
+    screen: `${screen.width}x${screen.height}`,
+    time: new Date().toLocaleString('uz-UZ', {timeZone:'Asia/Tashkent'})
+  };
+}
+
+// Barcha harakatlarni yozib borish
+function logActivity(action, details=""){
+  const entry = {
+    t: Date.now(),
+    time: new Date().toLocaleString('uz-UZ', {timeZone:'Asia/Tashkent'}),
+    action: action,
+    details: details,
+    lesson: typeof cur!=='undefined'?cur:-1,
+    lessonName: typeof L!=='undefined' && L[cur] ? L[cur].t : '',
+    device: getDeviceInfo()
+  };
+  let logs = [];
+  try{ logs = JSON.parse(localStorage.getItem(TG_LOG_KEY)||'[]'); }catch(e){}
+  logs.push(entry);
+  // 500 tadan oshsa eskisini o'chirish
+  if(logs.length>500) logs=logs.slice(-500);
+  localStorage.setItem(TG_LOG_KEY, JSON.stringify(logs));
+  
+  // Statistikani yangilash
+  updateStats(action);
+  
+  // Telegramga yuborish (agar chat_id bo'lsa)
+  if(TG_CHAT_ID && SETTINGS && SETTINGS.dailyReport){
+    sendToTelegram(formatLogForTelegram(entry));
+  }
+  
+  return entry;
+}
+
+function updateStats(action){
+  let stats={};
+  try{ stats=JSON.parse(localStorage.getItem(TG_STATS_KEY)||'{}'); }catch(e){}
+  const today=new Date().toISOString().slice(0,10);
+  if(!stats[today]) stats[today]={date:today, lessons:0, codeRuns:0, success:0, fail:0, timeSpent:0, start:Date.now()};
+  if(action==='lesson_start') stats[today].lessons++;
+  if(action==='code_run') stats[today].codeRuns++;
+  if(action==='code_success') stats[today].success++;
+  if(action==='code_fail') stats[today].fail++;
+  stats[today].lastActive=Date.now();
+  // Vaqt hisoblash
+  if(action==='app_open' || action==='code_run' || action==='lesson_start'){
+    stats[today].timeSpent = Math.floor((Date.now() - (stats[today].start||Date.now()))/60000); // daqiqada
+  }
+  localStorage.setItem(TG_STATS_KEY, JSON.stringify(stats));
+}
+
+function formatLogForTelegram(entry){
+  return `📱 *Kamola faoliyati*
+🕐 ${entry.time}
+📝 ${entry.action}
+📖 Dars: ${entry.lesson+1} - ${entry.lessonName}
+💬 ${entry.details}
+📱 ${entry.device.screen}
+`;
+}
+
+async function sendToTelegram(text){
+  if(!TG_CHAT_ID) return;
+  try{
+    const url = `${TG_API}/sendMessage`;
+    const body = JSON.stringify({chat_id: TG_CHAT_ID, text: text, parse_mode: 'Markdown'});
+    await fetch(url, {method:'POST', headers:{'Content-Type':'application/json'}, body: body});
+  }catch(e){ console.log('TG send error', e); }
+}
+
+async function sendDailyReportToTelegram(){
+  let stats={};
+  try{ stats=JSON.parse(localStorage.getItem(TG_STATS_KEY)||'{}'); }catch(e){}
+  const today=new Date().toISOString().slice(0,10);
+  const s=stats[today]||{lessons:0, codeRuns:0, success:0, fail:0, timeSpent:0};
+  const report = `📊 *KUNLIK HISOBOT - ${today}*
+👩‍💻 Kamola bugun:
+📚 Darslar: ${s.lessons} ta
+💻 Kod ishga tushirish: ${s.codeRuns} marta
+✅ To'g'ri: ${s.success} ta
+❌ Xato: ${s.fail} ta
+⏱️ Ilovada: ${s.timeSpent||0} daqiqa
+📱 Qurilma: ${getDeviceInfo().screen}
+
+${s.lessons===0?'⚠️ *Bugun dars qilinmadi! Akang ogohlantirilsin!*': s.success>=3?'🌟 *Ajoyib natija! Akang hursand!*':'👍 *Davom etmoqda...*'}
+`;
+  await sendToTelegram(report);
+  // Log sifatida ham saqlash
+  logActivity('daily_report', report);
+}
+
+// Chat ID ni avtomatik topish - botga kim yozgan bo'lsa
+async function autoDetectChatId(){
+  try{
+    const res = await fetch(`${TG_API}/getUpdates`);
+    const data = await res.json();
+    if(data.ok && data.result.length>0){
+      // Oxirgi xabarni olish
+      const last = data.result[data.result.length-1];
+      const chatId = last.message ? last.message.chat.id : last.callback_query ? last.callback_query.message.chat.id : null;
+      if(chatId){
+        TG_CHAT_ID = chatId.toString();
+        localStorage.setItem('tg_chat_id', TG_CHAT_ID);
+        document.getElementById('tgChatIdInput').value = TG_CHAT_ID;
+        say(`Telegram ulandi! Chat ID: ${TG_CHAT_ID}`, 'happy', 4000);
+        return chatId;
+      }
+    }
+  }catch(e){ console.log('autoDetect error', e); }
+  return null;
+}
+
+// Bot buyruqlarini tekshirish - telefon server sifatida
+let lastUpdateId=parseInt(localStorage.getItem('tg_last_update')||'0');
+async function pollTelegramCommands(){
+  if(!TG_CHAT_ID) return;
+  try{
+    const res = await fetch(`${TG_API}/getUpdates?offset=${lastUpdateId+1}&timeout=10`);
+    const data = await res.json();
+    if(!data.ok) return;
+    for(const update of data.result){
+      lastUpdateId = update.update_id;
+      localStorage.setItem('tg_last_update', lastUpdateId.toString());
+      if(update.message && update.message.chat.id.toString()===TG_CHAT_ID){
+        const text = update.message.text||'';
+        const chatId = update.message.chat.id;
+        await handleBotCommand(text, chatId);
+      }
+    }
+  }catch(e){ console.log('poll error', e); }
+}
+
+async function handleBotCommand(text, chatId){
+  const cmd=text.toLowerCase().trim();
+  let reply="";
+  
+  if(cmd==='/start' || cmd==='/help'){
+    reply=`🤖 *CppUz Kamola Bot*
+Buyruqlar:
+/report - Bugungi hisobot
+/stats - Umumiy statistika
+/logs - Oxirgi 10 ta harakat
+/time - Qancha vaqt ishlatdi
+/icon - Hozirgi ikonka
+/lessons - Qaysi darslarda
+/clear - Loglarni tozalash
+Telefon o'zi server bo'lib ishlayapti ✅`;
+  }
+  else if(cmd==='/report'){
+    let stats={}; try{ stats=JSON.parse(localStorage.getItem(TG_STATS_KEY)||'{}'); }catch(e){}
+    const today=new Date().toISOString().slice(0,10);
+    const s=stats[today]||{lessons:0, codeRuns:0, success:0, fail:0, timeSpent:0};
+    reply=`📊 *Bugun - ${today}*
+Darslar: ${s.lessons}
+Kod: ${s.codeRuns}
+To'g'ri: ${s.success}
+Xato: ${s.fail}
+Vaqt: ${s.timeSpent||0} daqiqa`;
+  }
+  else if(cmd==='/stats'){
+    let logs=[]; try{ logs=JSON.parse(localStorage.getItem(TG_LOG_KEY)||'[]'); }catch(e){}
+    let stats={}; try{ stats=JSON.parse(localStorage.getItem(TG_STATS_KEY)||'{}'); }catch(e){}
+    const totalDays=Object.keys(stats).length;
+    const totalLessons=Object.values(stats).reduce((a,s)=>a+(s.lessons||0),0);
+    reply=`📈 *Umumiy*
+Kunlar: ${totalDays}
+Jami dars: ${totalLessons}
+Jami log: ${logs.length}
+Oxirgi: ${logs.length>0?logs[logs.length-1].time:'yoq'}`;
+  }
+  else if(cmd==='/logs'){
+    let logs=[]; try{ logs=JSON.parse(localStorage.getItem(TG_LOG_KEY)||'[]'); }catch(e){}
+    const last10=logs.slice(-10).reverse();
+    reply="📝 *Oxirgi 10 ta harakat:*\n"+last10.map(l=>`🕐 ${l.time} - ${l.action} ${l.details}`).join('\n');
+  }
+  else if(cmd==='/time'){
+    const last=parseInt(localStorage.getItem('lastActive')||'0');
+    const idle=Date.now()-last;
+    const mins=Math.floor(idle/60000);
+    reply=`⏱️ *Vaqt*
+Oxirgi faollik: ${new Date(last).toLocaleString('uz-UZ')}
+${mins} daqiqa oldin
+${mins>60?`⚠️ ${Math.floor(mins/60)} soatdan beri dars yo'q!`:''}`;
+  }
+  else if(cmd==='/lessons'){
+    let doneCount=0; try{ const S=JSON.parse(localStorage.getItem('cppuz2')||'{}'); doneCount=Object.values(S.c||{}).filter(Boolean).length; }catch(e){}
+    reply=`📚 *Darslar*
+Tugallangan: ${doneCount}/10
+Joriy: ${typeof cur!=='undefined'?cur+1:'-'}`
+  }
+  else if(cmd.startsWith('/say ')){
+    const msg=text.slice(5);
+    say(`Akangdan xabar: ${msg}`, 'think', 8000);
+    reply=`✅ Kamolaga yuborildi: ${msg}`;
+  }
+  else {
+    reply=`Noma'lum buyruq: ${text}
+Yordam: /help`;
+  }
+  
+  // Javob yuborish
+  try{
+    await fetch(`${TG_API}/sendMessage`, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({chat_id: chatId, text: reply, parse_mode:'Markdown'})});
+  }catch(e){}
+}
+
+// Har 15 soniyada bot buyruqlarini tekshirish - telefon server
+setInterval(pollTelegramCommands, 15000);
+
+// Ilova ochilganda log
+
+// === ILLOVA OCHILGANDA TELEGRAMGA XABAR ===
+async function notifyAppOpen(){
+  const now = new Date().toLocaleString('uz-UZ', {timeZone:'Asia/Tashkent', hour:'2-digit', minute:'2-digit', day:'2-digit', month:'2-digit'});
+  const startMessages = [
+    `🟢 *Hozir Singlingiz Kamola dars qilyabti!* 📚\n🕐 ${now}\n📱 Ilovani ochdi, C++ o'rganishni boshladi!`,
+    `✨ *Kamola hozir darsda!* 👩‍💻\n🕐 ${now}\n💻 CppUz ilovasini ishga tushirdi!`,
+    `📖 *Singlingiz Kamola hozir dars qilyabti!* 🌟\n🕐 ${now}\n🎯 Darslarni o'rganmoqda!`,
+    `🚀 *Kamola darsni boshladi!* 💻\n🕐 ${now}\n📱 Ilova ochildi, kod yozishga tayyor!`,
+    `🌸 *Hozir Kamola o'qiyapti!* 📚\n🕐 ${now}\n✨ Akangiz ko'rib tursin!`
+  ];
+  const msg = startMessages[Math.floor(Math.random()*startMessages.length)];
+  logActivity('app_open', 'Ilova ochildi - Telegramga xabar yuborildi');
+  
+  // Agar chat_id bo'lsa darhol yuborish - app ochilishi muhim xabar, har doim yuboriladi
+  if(TG_CHAT_ID){
+    await sendToTelegram(msg);
+  }
+  
+  // Local storage ga oxirgi ochilgan vaqt
+  localStorage.setItem('last_app_open', Date.now().toString());
+}
+
+// Ilova ochilganda darhol xabar yuborish (3 soniyadan keyin, sozlamalar yuklangach)
+setTimeout(()=>{ notifyAppOpen(); }, 3000);
+
+logActivity('app_open', 'Ilova ochildi');
+
+
+// Har soatda hisobot
+setInterval(()=>{
+  if(TG_CHAT_ID && SETTINGS.dailyReport){
+    const lastReport=parseInt(localStorage.getItem('last_report_time')||'0');
+    if(Date.now()-lastReport>3600000){ // har soat
+      sendDailyReportToTelegram();
+      localStorage.setItem('last_report_time', Date.now().toString());
+    }
+  }
+}, 600000);
+</script><script>
+function saveTgChatId(){
+  const input=document.getElementById('tgChatIdInput');
+  TG_CHAT_ID=input.value.trim();
+  localStorage.setItem('tg_chat_id', TG_CHAT_ID);
+  say(`Chat ID saqlandi: ${TG_CHAT_ID}`, 'happy', 3000);
+  logActivity('tg_chat_set', `Chat ID: ${TG_CHAT_ID}`);
+}
+function testTelegram(){
+  if(!TG_CHAT_ID){ say("Avval Chat ID ni kiriting yoki Topish bosing!", 'sad', 4000); return; }
+  sendToTelegram(`🧪 *Test xabari*
+📱 Kamola ilovasidan
+🕐 ${new Date().toLocaleString('uz-UZ')}
+✅ Telegram bog'landi!
+Telefon server bo'lib ishlayapti.
+@talaba_ka1`);
+  say("Test Telegramga yuborildi! ✅", 'happy', 3000);
+}
+function viewLogs(){
+  const view=document.getElementById('tgLogView');
+  let logs=[]; try{ logs=JSON.parse(localStorage.getItem(TG_LOG_KEY)||'[]'); }catch(e){}
+  view.style.display=view.style.display==='none'?'block':'none';
+  view.innerHTML=logs.slice(-50).reverse().map(l=>`<div style="border-bottom:1px solid #1e3a5f;padding:4px 0"><b>${l.time}</b> ${l.action} - ${l.details} - Dars ${l.lesson+1}</div>`).join('') || 'Log yoq';
+}
+function clearLogs(){
+  if(confirm('Hamma loglarni tozalaysizmi?')){
+    localStorage.removeItem(TG_LOG_KEY);
+    localStorage.removeItem(TG_STATS_KEY);
+    document.getElementById('tgLogView').innerHTML='Tozalandi';
+    say("Loglar tozalandi", 'happy', 3000);
+  }
+}
+// Initialize chat id input
+setTimeout(()=>{
+  const inp=document.getElementById('tgChatIdInput');
+  if(inp) inp.value=TG_CHAT_ID;
+}, 1000);
+</script><script>
+// Ilova yopilganda ham xabar (page visibility)
+document.addEventListener('visibilitychange', ()=>{
+  if(document.hidden){
+    const openTime = parseInt(localStorage.getItem('last_app_open')||'0');
+    const spent = Math.floor((Date.now()-openTime)/60000);
+    if(spent>=2 && TG_CHAT_ID){
+      const closeMsg = `🔴 *Kamola darsni tugatdi*\n🕐 ${new Date().toLocaleString('uz-UZ', {timeZone:'Asia/Tashkent'})}\n⏱️ ${spent} daqiqa o'qidi\n📚 Bugun ${JSON.parse(localStorage.getItem('cppuz_tg_stats')||'{}')[new Date().toISOString().slice(0,10)]?.lessons||0} ta dars`;
+      sendToTelegram(closeMsg);
+      logActivity('app_close', `${spent} daqiqa o'qidi`);
+    }
+  } else {
+    // Qaytib kirganda yana ochildi deb hisoblash
+    if(Date.now() - parseInt(localStorage.getItem('last_app_open')||'0') > 300000){ // 5 daqiqadan keyin qaytsa
+      notifyAppOpen();
+    }
+  }
+});
+</script><script>
+// === ULTIMATE PRO MAX - XP, TAMAGOTCHI, SHOP, 100 MASALA, WIDGET, APP BLOCKER ===
+
+// XP SYSTEM
+const XP_KEY='cppuz_xp_v3';
+let XP_DATA={xp:0, level:1, streak:0, lastDate:'', hunger:100, happy:100, clothes:[], equipped:'', masalaSolved:{}};
+try{ XP_DATA={...XP_DATA, ...JSON.parse(localStorage.getItem(XP_KEY)||'{}')}; }catch(e){}
+
+function saveXP(){ localStorage.setItem(XP_KEY, JSON.stringify(XP_DATA)); updateXPUI(); }
+
+function addXP(amount, reason=''){
+  XP_DATA.xp+=amount;
+  let need = XP_DATA.level*100;
+  while(XP_DATA.xp>=need){
+    XP_DATA.xp-=need;
+    XP_DATA.level++;
+    need=XP_DATA.level*100;
+    celebrateOnLevelUp();
+  }
+  saveXP();
+  logActivity('xp_gain', `+${amount} XP ${reason}`);
+  // Tamagotchi boqish
+  XP_DATA.hunger=Math.min(100, XP_DATA.hunger+5);
+  XP_DATA.happy=Math.min(100, XP_DATA.happy+3);
+}
+
+function celebrateOnLevelUp(){
+  say(`🎉 LEVEL UP! Endi ${XP_DATA.level}-level! 👑`, 'star', 5000);
+  if(TG_CHAT_ID) sendToTelegram(`🌟 *Kamola LEVEL UP!*\n👑 ${XP_DATA.level}-level\n💎 ${XP_DATA.xp} XP\n📚 ${Object.keys(XP_DATA.masalaSolved||{}).length} masala`);
+  vibrate([100,50,100,50,200]);
+  // Konfetti
+  for(let i=0;i<20;i++){ setTimeout(()=>{ const h=document.createElement('div'); h.className='ht'; h.textContent=['🎉','⭐','👑','💎'][Math.floor(Math.random()*4)]; h.style.left=Math.random()*100+'%'; h.style.setProperty('--dx', (Math.random()-0.5)*100+'px'); document.body.appendChild(h); setTimeout(()=>h.remove(),1200); }, i*100); }
+}
+
+function updateXPUI(){
+  const need=XP_DATA.level*100;
+  const pct=(XP_DATA.xp/need)*100;
+  document.getElementById('xpFill').style.width=pct+'%';
+  document.getElementById('statLevel').textContent=XP_DATA.level;
+  document.getElementById('statXP').textContent=XP_DATA.xp;
+  document.getElementById('statStreak').textContent=XP_DATA.streak;
+  document.getElementById('statHunger').textContent=Math.floor(XP_DATA.hunger);
+  // Widget
+  if(document.getElementById('wLevel')) document.getElementById('wLevel').textContent=XP_DATA.level;
+  if(document.getElementById('wXP')) document.getElementById('wXP').textContent=XP_DATA.xp;
+  if(document.getElementById('wStreak')) document.getElementById('wStreak').textContent=XP_DATA.streak;
+  if(document.getElementById('wLesson')) document.getElementById('wLesson').textContent=(typeof cur!=='undefined'?cur+1:1);
+  // Tamagotchi bars
+  document.getElementById('tamaHungerBar').style.width=XP_DATA.hunger+'%';
+  document.getElementById('tamaHappyBar').style.width=XP_DATA.happy+'%';
+  const moodEl=document.getElementById('tamaMood');
+  if(moodEl){
+    if(XP_DATA.hunger<20) moodEl.textContent='Och! 🥺';
+    else if(XP_DATA.happy<30) moodEl.textContent='Charchagan 😴';
+    else if(XP_DATA.level>=10) moodEl.textContent='Qirol 👑';
+    else moodEl.textContent='Baxtli 😸';
+  }
+  const shopXP=document.getElementById('shopXP');
+  if(shopXP) shopXP.textContent=`💎 ${XP_DATA.xp} XP (Level ${XP_DATA.level})`;
+}
+
+// Streak
+function checkStreak(){
+  const today=new Date().toISOString().slice(0,10);
+  if(XP_DATA.lastDate!==today){
+    const yesterday=new Date(Date.now()-86400000).toISOString().slice(0,10);
+    if(XP_DATA.lastDate===yesterday){
+      XP_DATA.streak++;
+    } else if(XP_DATA.lastDate!==''){
+      if(XP_DATA.streak>0) say(`Streak uzildi (${XP_DATA.streak} kun edi). Yangidan boshlaymiz! 💪`, 'sad', 4000);
+      XP_DATA.streak=1;
+    } else {
+      XP_DATA.streak=1;
+    }
+    XP_DATA.lastDate=today;
+    saveXP();
+  }
+}
+checkStreak();
+
+// Tamagotchi - har soat ochlik kamayadi
+setInterval(()=>{
+  XP_DATA.hunger=Math.max(0, XP_DATA.hunger-2);
+  XP_DATA.happy=Math.max(0, XP_DATA.happy-1);
+  if(XP_DATA.hunger<10 && SETTINGS.talkingCat){
+    say("Quvvatim tugayapti! Dars qilib to'ldiramizmi? 🔋", 'sad', 4000);
+  }
+  saveXP();
+}, 3600000); // har soat
+
+function feedTama(){
+  if(XP_DATA.xp<10){ say("XP yetmadi! Dars qilib XP yig'! 💎", 'sad', 3000); return; }
+  XP_DATA.xp-=10;
+  XP_DATA.hunger=Math.min(100, XP_DATA.hunger+20);
+  XP_DATA.happy=Math.min(100, XP_DATA.happy+10);
+  saveXP();
+  say("Rahmat, quvvatim to'ldi! 🔋", 'happy', 3000);
+  vibrate([50,50,50]);
+}
+
+// SHOP - Kiyimlar
+const SHOP_ITEMS=[
+  {id:'crown', name:'Toj 👑', ico:'👑', price:100, level:3},
+  {id:'glasses', name:'Kozoynak 🤓', ico:'🤓', price:50, level:2},
+  {id:'tie', name:'Galstuk 👔', ico:'👔', price:80, level:4},
+  {id:'cap', name:'Kepka 🧢', ico:'🧢', price:60, level:2},
+  {id:'bow', name:'Bantik 🎀', ico:'🎀', price:40, level:1},
+  {id:'scarf', name:'Sharf 🧣', ico:'🧣', price:70, level:3},
+  {id:'star', name:'Yulduz ⭐', ico:'⭐', price:150, level:5},
+  {id:'angel', name:'Farishta 😇', ico:'😇', price:200, level:7},
+  {id:'devil', name:'Shayton 😈', ico:'😈', price:200, level:7},
+  {id:'wizard', name:'Sehrgar 🧙', ico:'🧙', price:300, level:10},
+];
+
+function openShop(){
+  document.getElementById('shopModal').classList.add('open');
+  renderShop();
+}
+function closeShop(){ document.getElementById('shopModal').classList.remove('open'); }
+
+function renderShop(){
+  const grid=document.getElementById('shopGrid');
+  grid.innerHTML=SHOP_ITEMS.map(item=>{
+    const owned=XP_DATA.clothes.includes(item.id);
+    const canBuy=XP_DATA.xp>=item.price && XP_DATA.level>=item.level;
+    const equipped=XP_DATA.equipped===item.id;
+    return `<div class="shopItem ${owned?'owned':''}" onclick="buyItem('${item.id}')">
+      <div class="ico">${item.ico}</div>
+      <div style="font-size:11px;font-weight:700">${item.name}</div>
+      <div style="font-size:10px;color:var(--t2)">Lv ${item.level} • ${item.price} XP</div>
+      <div style="font-size:10px;color:${owned? (equipped?'var(--ac)':'var(--yl)') : (canBuy?'var(--ac)':'var(--rd)')}">${owned? (equipped?'Kiyilgan ✅':'Sotib olingan') : (canBuy?'Sotib olish':'Qulfli 🔒')}</div>
+    </div>`;
+  }).join('');
+}
+
+function buyItem(id){
+  const item=SHOP_ITEMS.find(i=>i.id===id);
+  if(!item) return;
+  if(XP_DATA.clothes.includes(id)){
+    XP_DATA.equipped = XP_DATA.equipped===id ? '' : id;
+    saveXP(); renderShop();
+    say(`${item.name} ${XP_DATA.equipped===id?'kiyildi!':'yechildi!'} ${item.ico}`, 'happy', 3000);
+    // Tamagotchi cat emoji change
+    document.getElementById('tamaCat').textContent = XP_DATA.equipped ? item.ico : '🤖';
+    document.getElementById('wCat').textContent = XP_DATA.equipped ? item.ico : '🤖';
+    return;
+  }
+  if(XP_DATA.xp<item.price){ say(`XP yetmadi! ${item.price} XP kerak`, 'sad', 3000); return; }
+  if(XP_DATA.level<item.level){ say(`Level yetmadi! ${item.level} level kerak`, 'sad', 3000); return; }
+  XP_DATA.xp-=item.price;
+  XP_DATA.clothes.push(id);
+  XP_DATA.equipped=id;
+  saveXP(); renderShop();
+  say(`${item.name} sotib olindi! Kiyildi! ${item.ico}🎉`, 'star', 4000);
+  document.getElementById('tamaCat').textContent=item.ico;
+  document.getElementById('wCat').textContent=item.ico;
+}
+
+// 100 MASALA BANKI
+const MASALA_BANK=[
+  {id:1, t:"Salom chiqarish", d:"cout bilan Salom", o:"Salom", q:"oson"},
+  {id:2, t:"2 son yig'indisi", d:"a=5 b=3 yig'indi 8", o:"8", q:"oson"},
+  {id:3, t:"Juftmi?", d:"n juft bo'lsa Juft", o:"Juft", q:"oson"},
+  {id:4, t:"Kattasi", d:"2 sondan kattasi", o:"9", q:"oson"},
+  {id:5, t:"1 dan N gacha", d:"for bilan 1..5", o:"1 2 3 4 5", q:"oson"},
+  {id:6, t:"Faktorial 4", d:"4! = 24", o:"24", q:"ortacha"},
+  {id:7, t:"Massiv yig'indi", d:"{1,2,3} yig'indi 6", o:"6", q:"ortacha"},
+  {id:8, t:"Eng katta", d:"{5,9,2} max 9", o:"9", q:"ortacha"},
+  {id:9, t:"Teskari massiv", d:"{1,2,3} -> 3 2 1", o:"3 2 1", q:"ortacha"},
+  {id:10, t:"String uzunlik", d:"\"Kamola\" uzunligi 6", o:"6", q:"oson"},
+];
+for(let i=11;i<=100;i++){
+  MASALA_BANK.push({id:i, t:`Masala ${i}`, d:`C++ masala ${i} - ${['for','if','massiv','string','vector'][i%5]}`, o:`${i}`, q:['oson','ortacha','qiyin'][i%3]});
+}
+
+function openMasalaBank(){
+  document.getElementById('masalaBank').classList.add('open');
+  renderMasala('all');
+}
+function closeMasalaBank(){ document.getElementById('masalaBank').classList.remove('open'); }
+
+function renderMasala(filter){
+  const list=document.getElementById('masalaList');
+  const filtered=filter==='all'?MASALA_BANK:MASALA_BANK.filter(m=>m.q===filter);
+  list.innerHTML=filtered.slice(0,30).map(m=>{
+    const solved=XP_DATA.masalaSolved[m.id];
+    return `<div class="problem"><div><b>${m.id}. ${m.t}</b> <small style="color:var(--t2)">(${m.q})</small><br><small>${m.d}</small></div><div><span style="color:${solved?'var(--ac)':'var(--t2)'}">${solved?'✅':'⬜'}</span> <button class="bt" onclick="solveMasala(${m.id})" style="padding:2px 8px;font-size:11px">Yechish</button></div></div>`;
+  }).join('');
+}
+
+function filterMasala(q){ renderMasala(q); }
+
+function solveMasala(id){
+  XP_DATA.masalaSolved[id]=true;
+  addXP(10, `masala ${id}`);
+  saveXP();
+  renderMasala('all');
+  say(`Masala ${id} yechildi! +10 XP! 💎`, 'star', 3000);
+}
+
+// WIDGET
+function toggleWidget(){
+  const w=document.getElementById('widgetSim');
+  w.classList.toggle('show');
+  const tam=document.getElementById('tamagotchi');
+  tam.classList.toggle('show', w.classList.contains('show') || SETTINGS.walkingCat);
+  if(w.classList.contains('show')){
+    say("Widget yoqildi! Bosh ekran kabi! 📱", 'happy', 3000);
+  }
+}
+
+// APP BLOCKER SIMULATSIYA
+const BLOCKER_QS=[
+  {q:"int a=5; cout << a*2; nima chiqaradi?", a:"10"},
+  {q:"for da 0 dan 2 gacha necha marta aylanadi? 0,1,2", a:"3"},
+  {q:"cout << 7/2; int bo'lsa nima?", a:"3"},
+  {q:"string s=\"hi\"; s.length()?", a:"2"},
+  {q:"int a[3]={1,2,3}; a[0]?", a:"1"},
+];
+let currentBlockerAnswer="10";
+
+function simulateAppBlock(appName){
+  if(!SETTINGS.lessonLock) return;
+  const q=BLOCKER_QS[Math.floor(Math.random()*BLOCKER_QS.length)];
+  currentBlockerAnswer=q.a;
+  document.getElementById('blockerQ').textContent=`${appName} qulflangan! Savol: ${q.q}`;
+  document.getElementById('appBlocker').classList.add('show');
+  logActivity('app_block', `${appName} qulflandi`);
+  if(TG_CHAT_ID) sendToTelegram(`🔒 *${appName} qulflandi*\n❓ ${q.q}\n📱 Kamola javob berishi kerak`);
+}
+
+function checkBlocker(){
+  const ans=document.getElementById('blockerA').value.trim();
+  if(ans===currentBlockerAnswer){
+    document.getElementById('appBlocker').classList.remove('show');
+    document.getElementById('blockerA').value='';
+    addXP(5, 'blocker yechdi');
+    say("To'g'ri! Qulf ochildi! 🔓", 'happy', 3000);
+  } else {
+    say("Xato! Yana urin! 🤔", 'sad', 3000);
+    vibrate([100,50,100]);
+  }
+}
+
+function goToLesson(){
+  document.getElementById('appBlocker').classList.remove('show');
+  window.scrollTo(0,0);
+}
+
+// Test uchun har 30 daqiqada TikTok blok simulyatsiyasi (agar yoqilgan bo'lsa)
+setInterval(()=>{
+  if(SETTINGS.lessonLock && Math.random()<0.1){
+    simulateAppBlock(['TikTok','Instagram','YouTube'][Math.floor(Math.random()*3)]);
+  }
+}, 1800000);
+
+// XP ni dars muvaffaqiyatiga bog'lash - eski run ni override qilish uchun hook
+const origChk = typeof chk!=='undefined' ? chk : null;
+if(typeof chk==='function'){
+  const oldChk=chk;
+  window.chk = function(){
+    const prevDone=Object.keys(S.c||{}).length;
+    oldChk();
+    const newDone=Object.keys(S.c||{}).length;
+    if(newDone>prevDone){
+      addXP(20, `dars ${cur+1}`);
+    }
+  }
+}
+
+// Init XP UI
+setTimeout(()=>{ updateXPUI(); 
+  const tam=document.getElementById('tamagotchi');
+  if(tam && SETTINGS.walkingCat) tam.classList.add('show');
+  // Equip saved cloth
+  if(XP_DATA.equipped){
+    const it=SHOP_ITEMS.find(i=>i.id===XP_DATA.equipped);
+    if(it){ document.getElementById('tamaCat').textContent=it.ico; document.getElementById('wCat').textContent=it.ico; }
+  }
+}, 1000);
+</script><script src="three.min.js"></script><script src="robot.js"></script><script src="playground.js"></script><script src="robot_mood.js"></script></body></html>
